@@ -67,4 +67,4 @@ const NewTransferModal: React.FC<NewTransferModalProps> = ({ open, onOk, onCance
   );
 };
 
-export default NewTransferModal;;
+export default NewTransferModal;

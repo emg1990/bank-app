@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Button, Menu } from 'antd';
+import { Avatar, Menu } from 'antd';
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import styles from './Header.module.css';
 
