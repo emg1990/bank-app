@@ -26,6 +26,7 @@ const NewTransferModal: React.FC<NewTransferModalProps> = ({ open, onOk, onCance
   return (
     <Modal
       title="Make a transfer"
+      onCancel={onCancel}
       open={open}
       footer={[
         <Button key="back" onClick={onCancel}>

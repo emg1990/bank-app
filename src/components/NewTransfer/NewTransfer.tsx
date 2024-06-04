@@ -15,6 +15,7 @@ const NewTransfer: React.FC = () => {
 
   const makeTransfer = () => {
     // Make transfer
+    // Clear form
     closeNewTransferModal();
   }
 

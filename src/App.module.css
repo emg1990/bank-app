@@ -1,4 +1,10 @@
+/* This CSS code defines the styles for the content section of the bank app. */
+
 .content {
-  padding: var(--padding);
-  margin-top: var(--header-height);
+  position: relative;
+  top: var(--header-height);
+  padding: 0 var(--padding);
+  /* Allows showing the bottom padding at all times */
+  height: calc(100vh - var(--header-height) - var(--padding));
+  overflow-y: auto;
 }
