@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  justify-content: center;
+  height: 200px;
+}
+
+.cardContainer {
+  background: linear-gradient(135deg, #2b5876, #4e4376);
+  color: white;
+  border-radius: 15px;
+  padding: 20px;
+  width: 300px;
+  height: 180px;
+  box-shadow:
+    12px 12px 8px #00000033;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
