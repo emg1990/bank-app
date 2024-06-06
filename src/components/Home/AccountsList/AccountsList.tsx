@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { UserOutlined } from '@ant-design/icons';
-import { List } from 'antd';
+import { Card, List } from 'antd';
 import { IAccount } from '../../types';
+import AccountModal from './AccountModal/AccountModal';
+import AccountsListHeader from './AccountsListHeader/AccountsListHeader';
+import AccountRow from './AccountRow/AccountRow';
 
 const AccountsList = () => {
   const [accounts, setAccounts] = useState<IAccount[]>([]);
+  const [selectedAccount, setSelectedAccount] = useState<IAccount | undefined>();
+  const [openModal, setOpenModal] = useState(false);
   useEffect(() => {
     const mockAccounts: IAccount[] = [
       {
         accountId: 1,
+        name: "Account 01",
         ownerId: 1,
         currency: 'USD',
         balance: 1000,
@@ -23,22 +28,25 @@ const AccountsList = () => {
     setAccounts(mockAccounts);
   }, []);
 
+  const onCloseModal = () => {
+    setOpenModal(false);
+    setSelectedAccount(undefined);
+  };
+
+  const onCreateOrEditAccount = (account?: IAccount) => {
+    setSelectedAccount(account);
+    setOpenModal(true);
+  }
+
   return (
-    <>
+    <Card title={<AccountsListHeader onClick={() => onCreateOrEditAccount()}/>} >
       <List
         itemLayout="horizontal"
         dataSource={accounts}
-        renderItem={account => (
-          <List.Item>
-            <List.Item.Meta
-              avatar={<UserOutlined />}
-              title={`Account ID: ${account.accountId}`}
-              description={`Owner ID: ${account.ownerId} Currency: ${account.currency} Balance: ${account.balance}`}
-            />
-          </List.Item>
-        )}
+        renderItem={account => <AccountRow onEdit={() => onCreateOrEditAccount(account)} account={account} />}
       />
-    </>
+      {openModal && <AccountModal open={openModal} onCancel={onCloseModal} account={selectedAccount}/>}
+    </Card>
   );
 };
 

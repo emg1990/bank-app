@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Row, Col, Typography } from 'antd';
+import { Row, Col, Typography } from 'antd';
 import AccountsList from './AccountsList/AccountsList';
 import TransfersList from './TransfersList/TransfersList';
 import PersonalAccountsList from './PersonalAccountsList/PersonalAccountsList';
@@ -18,14 +18,10 @@ const Home: React.FC = () => {
       </div>
       <Row gutter={[30, 30]}>
         <Col xs={24} md={12}>
-          <Card title="Accounts" >
-            <AccountsList />
-          </Card>
+          <AccountsList />
         </Col>
         <Col xs={24} md={12}>
-          <Card title="Last 5 Transfers">
-            <TransfersList />
-          </Card>
+          <TransfersList />
         </Col>
       </Row>
     </>
