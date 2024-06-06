@@ -1,0 +1,211 @@
+{
+  "accounts": [
+    {
+      "accountId": 1,
+      "customerId": 100,
+      "currency": "USD",
+      "balance": 5000.75,
+      "name": "Checking Account"
+    },
+    {
+      "accountId": 2,
+      "customerId": 101,
+      "currency": "EUR",
+      "balance": 3000.50,
+      "name": "Savings Account"
+    },
+    {
+      "accountId": 3,
+      "customerId": 102,
+      "currency": "GBP",
+      "balance": 4500.20,
+      "name": "Business Account"
+    },
+    {
+      "accountId": 4,
+      "customerId": 103,
+      "currency": "USD",
+      "balance": 750.00,
+      "name": "Personal Checking"
+    },
+    {
+      "accountId": 5,
+      "customerId": 104,
+      "currency": "USD",
+      "balance": 15000.00,
+      "name": "Investment Account"
+    },
+    {
+      "accountId": 6,
+      "customerId": 105,
+      "currency": "JPY",
+      "balance": 1000000,
+      "name": "Yen Account"
+    },
+    {
+      "accountId": 7,
+      "customerId": 106,
+      "currency": "USD",
+      "balance": 2200.30,
+      "name": "Emergency Fund"
+    },
+    {
+      "accountId": 8,
+      "customerId": 107,
+      "currency": "CAD",
+      "balance": 800.75,
+      "name": "Canada Account"
+    },
+    {
+      "accountId": 9,
+      "customerId": 108,
+      "currency": "AUD",
+      "balance": 4000.25,
+      "name": "Australia Account"
+    },
+    {
+      "accountId": 10,
+      "customerId": 109,
+      "currency": "EUR",
+      "balance": 3500.60,
+      "name": "Europe Travel Fund"
+    }
+  ],
+  "currencies": [
+    {
+      "currencyId": 1,
+      "name": "United States Dollar",
+      "symbol": "$",
+      "code": "USD"
+    },
+    {
+      "currencyId": 2,
+      "name": "Euro",
+      "symbol": "€",
+      "code": "EUR"
+    },
+    {
+      "currencyId": 3,
+      "name": "British Pound Sterling",
+      "symbol": "£",
+      "code": "GBP"
+    },
+    {
+      "currencyId": 4,
+      "name": "Japanese Yen",
+      "symbol": "¥",
+      "code": "JPY"
+    },
+    {
+      "currencyId": 5,
+      "name": "Canadian Dollar",
+      "symbol": "C$",
+      "code": "CAD"
+    }
+  ],
+  "customers": [
+    {
+      "customerId": 100,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "address": "123 Main St, Anytown, USA",
+      "phone": "+1234567890"
+    },
+    {
+      "customerId": 101,
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane.smith@example.com",
+      "address": "456 Elm St, Othertown, USA",
+      "phone": "+0987654321"
+    },
+    {
+      "customerId": 102,
+      "firstName": "Alice",
+      "lastName": "Johnson",
+      "email": "alice.johnson@example.com",
+      "address": "789 Oak St, Sometown, USA",
+      "phone": "+1122334455"
+    },
+    {
+      "customerId": 103,
+      "firstName": "Bob",
+      "lastName": "Williams",
+      "email": "bob.williams@example.com",
+      "address": "101 Pine St, Anycity, USA",
+      "phone": "+1231231234"
+    },
+    {
+      "customerId": 104,
+      "firstName": "Charlie",
+      "lastName": "Brown",
+      "email": "charlie.brown@example.com",
+      "address": "202 Birch St, Anystate, USA",
+      "phone": "+3213214321"
+    },
+    {
+      "customerId": 105,
+      "firstName": "Dave",
+      "lastName": "Davis",
+      "email": "dave.davis@example.com",
+      "address": "303 Cedar St, Newcity, USA",
+      "phone": "+9876543210"
+    },
+    {
+      "customerId": 106,
+      "firstName": "Eve",
+      "lastName": "Miller",
+      "email": "eve.miller@example.com",
+      "address": "404 Willow St, Oldcity, USA",
+      "phone": "+1010101010"
+    },
+    {
+      "customerId": 107,
+      "firstName": "Frank",
+      "lastName": "Moore",
+      "email": "frank.moore@example.com",
+      "address": "505 Aspen St, Smalltown, USA",
+      "phone": "+2020202020"
+    },
+    {
+      "customerId": 108,
+      "firstName": "Grace",
+      "lastName": "Wilson",
+      "email": "grace.wilson@example.com",
+      "address": "606 Spruce St, Bigtown, USA",
+      "phone": "+3030303030"
+    },
+    {
+      "customerId": 109,
+      "firstName": "Hank",
+      "lastName": "Taylor",
+      "email": "hank.taylor@example.com",
+      "address": "707 Fir St, Littletown, USA",
+      "phone": "+4040404040"
+    }
+  ],
+  "transfers": [
+    {
+      "transferId": 1,
+      "fromAccount": 1,
+      "toAccount": 2,
+      "amount": 500.00,
+      "date": "2024-06-01T12:00:00Z"
+    },
+    {
+      "transferId": 2,
+      "fromAccount": 2,
+      "toAccount": 3,
+      "amount": 250.00,
+      "date": "2024-06-02T14:30:00Z"
+    },
+    {
+      "transferId": 3,
+      "fromAccount": 3,
+      "toAccount": 1,
+      "amount": 100.00,
+      "date": "2024-06-03T16:00:00Z"
+    }
+  ]
+}
