@@ -49,8 +49,9 @@ const PersonalAccounts = () => {
   /**
    * The number of cards to show based on the width of the container.
    * It is calculated by dividing the width by the sum of the card width, gap and padding.
+   * Defaulting to 1 to avoid Carousel deviding by 0
    */
-  const cardsToShow = Math.min(Math.floor(width / (300 + 30 + 50)), accounts.length);
+  const cardsToShow = Math.min(Math.floor(width / (300 + 30 + 50)), accounts.length) || 1;
   return (
     <div className={styles.container}>
       <div className={styles.balance}>

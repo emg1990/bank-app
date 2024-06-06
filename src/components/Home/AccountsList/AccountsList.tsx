@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Card, List } from 'antd';
+import { Button, Card, List } from 'antd';
 import { IAccount } from '../../types';
 import AccountModal from './AccountModal/AccountModal';
-import AccountsListHeader from './AccountsListHeader/AccountsListHeader';
 import AccountRow from './AccountRow/AccountRow';
 
 const AccountsList = () => {
@@ -39,7 +38,7 @@ const AccountsList = () => {
   }
 
   return (
-    <Card title={<AccountsListHeader onClick={() => onCreateOrEditAccount()}/>} >
+    <Card title="Accounts" extra={<Button shape="round" onClick={() => onCreateOrEditAccount()}>Add</Button>}>
       <List
         itemLayout="horizontal"
         dataSource={accounts}

@@ -52,7 +52,7 @@ const AccountModal: React.FC<AccountModalProps> = ({ open, onCancel, account }) 
           </Select>
         </Form.Item>
         <Form.Item label="Balance">
-          <span>{account?.balance}</span>
+          <span>{account?.balance || 0}</span>
         </Form.Item>
       </Form>
     </Modal>
