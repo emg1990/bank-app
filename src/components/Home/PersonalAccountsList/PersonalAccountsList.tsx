@@ -50,15 +50,15 @@ const PersonalAccounts = () => {
    * The number of cards to show based on the width of the container.
    * It is calculated by dividing the width by the sum of the card width, gap and padding.
    */
-  const cardsToShow = Math.floor(width / (300 + 30 + 50));
+  const cardsToShow = Math.min(Math.floor(width / (300 + 30 + 50)), accounts.length);
   return (
     <div className={styles.container}>
       <div className={styles.balance}>
         {Object.keys(totalBalance).map(currency => (
-          <span key={currency}><strong>{currency}</strong>{totalBalance[currency]}</span>
+          <span key={currency}>{totalBalance[currency]} <strong>{currency}</strong></span>
         ))}
       </div>
-      <Carousel slidesToShow={cardsToShow}>
+      <Carousel autoplay={accounts.length > cardsToShow} slidesToShow={cardsToShow}>
         {accounts.map(account => (
           <PersonalAccount account={account} key={account.accountId}/>
         ))}

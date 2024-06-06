@@ -29,8 +29,10 @@ const Header: React.FC = () => {
     },
   ];
   return (
-    <div className={styles.header}>
-      <div className={styles.logo}>logo</div>
+    <div className={styles.header} >
+      <div className={styles.logo}>
+        <img src={process.env.PUBLIC_URL + '/bank_logo.jpg'} alt="Bank Logo" style={{ height: '60px' }}/>
+      </div>
       <Menu mode='vertical' className={styles.menu} items={items}/>
     </div>
   );

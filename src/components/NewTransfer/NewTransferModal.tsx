@@ -40,9 +40,11 @@ const NewTransferModal: React.FC<NewTransferModalProps> = ({ open, onOk, onCance
       <Form
         name="fund_transfer_form"
         onFinish={onOk}
-        layout="vertical"
+        layout="horizontal"
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 16 }}
       >
-        <Form.Item name="fromAccountId" label="From Account" rules={[{ required: true, message: 'Please select the source account!' }]}>
+        <Form.Item name="fromAccountId" label="From" rules={[{ required: true, message: 'Please select the source account!' }]}>
           <Select>
             {accounts.map(account => (
               <Select.Option key={account.id} value={account.id}>
@@ -51,7 +53,7 @@ const NewTransferModal: React.FC<NewTransferModalProps> = ({ open, onOk, onCance
             ))}
           </Select>
         </Form.Item>
-        <Form.Item name="toAccountId" label="To Account" rules={[{ required: true, message: 'Please select the destination account!' }]}>
+        <Form.Item name="toAccountId" label="To" rules={[{ required: true, message: 'Please select the destination account!' }]}>
           <Select>
             {accounts.map(account => (
               <Select.Option key={account.id} value={account.id}>

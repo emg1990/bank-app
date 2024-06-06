@@ -12,9 +12,6 @@ const App: React.FC = () => {
       <div className={styles.content}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/:id" element={<>Account</>} />
-          <Route path="/create-account" element={<>Create</>} />
-          <Route path="/edit-account/:id" element={<>Edit/Delete</>} />
         </Routes>
       </div>
       <NewTransfer />

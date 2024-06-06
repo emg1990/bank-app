@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ITransfer } from '../../types';
-import { List } from 'antd';
+import { Card, List } from 'antd';
 import { TransactionOutlined } from '@ant-design/icons';
 const { Item } = List;
 const TransfersList = () => {
@@ -29,19 +29,21 @@ const TransfersList = () => {
 
   }, []);
   return (
-    <List
-      itemLayout="horizontal"
-      dataSource={transfers}
-      renderItem={transfer => (
-        <Item>
-          <Item.Meta
-            avatar={<TransactionOutlined />}
-            title={`From Account ${transfer.fromAccount} to Account ${transfer.toAccount}`}
-            description={`Amount: ${transfer.amount} Date: ${transfer.date}`}
-          />
-        </Item>
-      )}
-    />
+    <Card title="Last 5 Transfers">
+      <List
+        itemLayout="horizontal"
+        dataSource={transfers}
+        renderItem={transfer => (
+          <Item>
+            <Item.Meta
+              avatar={<TransactionOutlined />}
+              title={`From Account ${transfer.fromAccount} to Account ${transfer.toAccount}`}
+              description={`Amount: ${transfer.amount} Date: ${transfer.date}`}
+            />
+          </Item>
+        )}
+      />
+    </Card>
   );
 };
 
