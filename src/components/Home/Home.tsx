@@ -9,7 +9,6 @@ const { Title } = Typography;
 
 
 const Home: React.FC = () => {
-
   return (
     <>
       <Title level={2}>Dashboard</Title>

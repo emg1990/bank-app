@@ -15,7 +15,6 @@ const PersonalAccount: React.FC<PersonalAccountProps> = ({ account }) => {
         <span>Account ID: {account.accountId}</span>
         <span>{account.currency}</span>
         <span>Balance: ${account.balance}</span>
-        <span>Owner ID: {account.ownerId}</span>
         </div>
       </Card>
     </div>

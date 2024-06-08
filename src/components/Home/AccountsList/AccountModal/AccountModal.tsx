@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Form, Input, Select, Modal } from 'antd';
 import { type IAccount } from '../../../types';
+import useCurrencies from '../../../../hooks/useCurrencies';
 
 interface AccountModalProps {
   open: boolean;
@@ -11,6 +12,7 @@ interface AccountModalProps {
 const AccountModal: React.FC<AccountModalProps> = ({ open, onCancel, account }) => {
   const [form] = Form.useForm<IAccount | undefined>();
   const isEdit = !!account;
+  const currencies = useCurrencies();
 
   useEffect(() => {
     form.setFieldsValue(account || {});
@@ -23,13 +25,15 @@ const AccountModal: React.FC<AccountModalProps> = ({ open, onCancel, account }) 
     onCancel();
   };
 
+  const action = isEdit ? "Update" : "Create";
+
   return (
     <Modal
-      title="Make a transfer"
+      title={`${action} an account`}
       onCancel={onCancel}
       open={open}
       onOk={handleSave}
-      okText={isEdit ? "Update" : "Create"}
+      okText={action}
     >
       <Form
         name="account_form"
@@ -46,9 +50,9 @@ const AccountModal: React.FC<AccountModalProps> = ({ open, onCancel, account }) 
         </Form.Item>
         <Form.Item name="currency" label="Currency" rules={[{ required: true, message: 'Please select the currency!' }]}>
           <Select>
-            <Select.Option value="USD">USD</Select.Option>
-            <Select.Option value="EUR">EUR</Select.Option>
-            <Select.Option value="GBP">GBP</Select.Option>
+            {currencies.map(currency => (
+              <Select.Option key={currency.code} value={currency.code}>{`${currency.name} - ${currency.symbol}`}</Select.Option>
+            ))}
           </Select>
         </Form.Item>
         <Form.Item label="Balance">
