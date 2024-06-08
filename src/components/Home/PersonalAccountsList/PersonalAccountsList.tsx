@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Carousel } from 'antd';
-import { IAccount } from '../../types';
+import { IAccount } from '../../../types/types';
 import PersonalAccount from './PersonalAccount/PersonalAccount';
 import useDimensions from '../../../hooks/useDimensions';
 import styles from './PersonalAccountsList.module.css'
@@ -11,21 +11,21 @@ const PersonalAccounts = () => {
   useEffect(() => {
     const mockAccounts: IAccount[] = [
       {
-        accountId: 1,
+        id: '1',
         ownerId: 1,
         name: 'Account 1',
         balance: 1000,
         currency: 'USD'
       },
       {
-        accountId: 2,
+        id: '2',
         ownerId: 1,
         name: 'Account 2',
         balance: 2000,
         currency: 'EUR'
       },
       {
-        accountId: 3,
+        id: '3',
         ownerId: 1,
         name: 'Account 3',
         balance: 3000,
@@ -61,7 +61,7 @@ const PersonalAccounts = () => {
       </div>
       <Carousel autoplay={accounts.length > cardsToShow} slidesToShow={cardsToShow}>
         {accounts.map(account => (
-          <PersonalAccount account={account} key={account.accountId}/>
+          <PersonalAccount account={account} key={account.id}/>
         ))}
       </Carousel>
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IAccount } from '../../../types';
+import { IAccount } from '../../../../types/types';
 import { Button, List, Popconfirm } from 'antd';
 import { DeleteOutlined, EditOutlined, UserOutlined } from '@ant-design/icons';
 import styles from './AccountRow.module.css';
@@ -20,7 +20,7 @@ const AccountRow: React.FC<AccountRowProps> = ({ account, onEdit }) => {
       <Item.Meta
         avatar={<UserOutlined />}
         title={<div className={styles.titleContainer}>
-          <span>Account ID: {account.accountId}</span>
+          <span>Account ID: {account.id}</span>
           <div>
             <Button
               type="text"
@@ -29,7 +29,7 @@ const AccountRow: React.FC<AccountRowProps> = ({ account, onEdit }) => {
             />
             <Popconfirm
               title="Delete the account"
-              description={`Are you sure to delete account ${account.name || account.accountId}?`}
+              description={`Are you sure to delete account ${account.name || account.id}?`}
               okText="Yes"
               cancelText="No"
               onConfirm={onDelete}

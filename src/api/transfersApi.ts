@@ -1,11 +1,21 @@
 import axios, { type AxiosResponse } from 'axios';
-import { ITransfer } from '../components/types';
+import { ITransfer } from '../types/types';
 import { BASE_URL } from '../config';
 
 // Transfers Endpoints
 export const getTransfers = async (): Promise<ITransfer[]> => {
   try {
     const response: AxiosResponse<ITransfer[]> = await axios.get(`${BASE_URL}/transfers`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching transfers", error);
+    throw error;
+  }
+};
+
+export const getLastNTransfers = async (limit = 5): Promise<ITransfer[]> => {
+  try {
+    const response: AxiosResponse<ITransfer[]> = await axios.get(`${BASE_URL}/transfers?_limit=${limit}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching transfers", error);

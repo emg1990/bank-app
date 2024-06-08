@@ -1,31 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, List } from 'antd';
-import { IAccount } from '../../types';
+import { IAccount } from '../../../types/types';
 import AccountModal from './AccountModal/AccountModal';
 import AccountRow from './AccountRow/AccountRow';
+import { getAccounts } from '../../../api/accountsApi';
+import { useAppContext } from '../../../contexts/AppContext';
 
 const AccountsList = () => {
   const [accounts, setAccounts] = useState<IAccount[]>([]);
   const [selectedAccount, setSelectedAccount] = useState<IAccount | undefined>();
   const [openModal, setOpenModal] = useState(false);
+  const { owner } = useAppContext();
   useEffect(() => {
-    const mockAccounts: IAccount[] = [
-      {
-        accountId: 1,
-        name: "Account 01",
-        ownerId: 1,
-        currency: 'USD',
-        balance: 1000,
-      },
-      {
-        accountId: 2,
-        ownerId: 2,
-        currency: 'EUR',
-        balance: 2000,
-      },
-    ];
-    setAccounts(mockAccounts);
-  }, []);
+    const fetchLinkedAccounts = async () => {
+      try {
+        const fetchedAccounts = await getAccounts(owner.id, owner.savedAccounts);
+        setAccounts(fetchedAccounts);
+      } catch (error) {
+        console.error('Failed to fetch currencies:', error);
+      }
+    };
+    fetchLinkedAccounts();
+  }, [owner]);
 
   const onCloseModal = () => {
     setOpenModal(false);

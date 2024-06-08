@@ -1,5 +1,5 @@
 import axios, { type AxiosResponse } from 'axios';
-import { ICurrency } from '../components/types';
+import { ICurrency } from '../types/types';
 import { BASE_URL } from '../config';
 
 // Currencies Endpoints

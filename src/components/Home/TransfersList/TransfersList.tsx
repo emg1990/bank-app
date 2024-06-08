@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ITransfer } from '../../types';
+import { ITransfer } from '../../../types/types';
 import { Card, List } from 'antd';
 import { TransactionOutlined } from '@ant-design/icons';
 const { Item } = List;

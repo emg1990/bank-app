@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Form, Input, Select, Modal } from 'antd';
-import { type IAccount } from '../../../types';
-import useCurrencies from '../../../../hooks/useCurrencies';
+import { type IAccount } from '../../../../types/types';
+import { useAppContext } from '../../../../contexts/AppContext';
 
 interface AccountModalProps {
   open: boolean;
@@ -12,7 +12,7 @@ interface AccountModalProps {
 const AccountModal: React.FC<AccountModalProps> = ({ open, onCancel, account }) => {
   const [form] = Form.useForm<IAccount | undefined>();
   const isEdit = !!account;
-  const currencies = useCurrencies();
+  const { currencies } = useAppContext();
 
   useEffect(() => {
     form.setFieldsValue(account || {});
