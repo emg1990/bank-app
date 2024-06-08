@@ -20,7 +20,7 @@ const AccountRow: React.FC<AccountRowProps> = ({ account, onEdit }) => {
       <Item.Meta
         avatar={<UserOutlined />}
         title={<div className={styles.titleContainer}>
-          <span>Account ID: {account.id}</span>
+          <span>Account: {account.name || account.id}</span>
           <div>
             <Button
               type="text"
@@ -42,7 +42,7 @@ const AccountRow: React.FC<AccountRowProps> = ({ account, onEdit }) => {
             </Popconfirm>
           </div>
         </div>}
-        description={`Owner ID: ${account.ownerId} Currency: ${account.currency} Balance: ${account.balance}`}
+        description={`IBAN: ${account.id} Currency: ${account.currency}`}
       />
     </Item>
   );

@@ -26,14 +26,13 @@ const PersonalAccountsList = () => {
     const balanceByCurrency: Record<string, number> = {};
     accounts.forEach(account => {
       if (balanceByCurrency[account.currency]) {
-        balanceByCurrency[account.currency] += account.balance;
+        balanceByCurrency[account.currency] += (account.balance || 0);
       } else {
-        balanceByCurrency[account.currency] = account.balance;
+        balanceByCurrency[account.currency] = (account.balance || 0);
       }
     });
     return balanceByCurrency;
   }, [accounts]);
-  console.log(totalBalance);
   /**
    * The number of cards to show based on the width of the container.
    * It is calculated by dividing the width by the sum of the card width, gap and padding.

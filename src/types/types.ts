@@ -3,7 +3,7 @@ export interface IAccount {
   ownerId: number;
   ownerDisplayName: string;
   currency: string;
-  balance: number;
+  balance?: number;
   name?: string;
 }
 
