@@ -1,74 +1,144 @@
 {
   "accounts": [
     {
-      "accountId": 1,
-      "customerId": 100,
+      "accountId": "GB33BUKB20201555555555",
+      "ownerId": 1,
       "currency": "USD",
-      "balance": 5000.75,
-      "name": "Checking Account"
+      "balance": 1200,
+      "name": "John's Savings"
     },
     {
-      "accountId": 2,
-      "customerId": 101,
+      "accountId": "GB94BARC10201530093459",
+      "ownerId": 1,
+      "currency": "USD",
+      "balance": 800,
+      "name": "John's Checking"
+    },
+    {
+      "accountId": "DE89370400440532013000",
+      "ownerId": 2,
       "currency": "EUR",
-      "balance": 3000.50,
-      "name": "Savings Account"
+      "balance": 1100,
+      "name": "Jane's Savings"
     },
     {
-      "accountId": 3,
-      "customerId": 102,
+      "accountId": "DE75512108001245126199",
+      "ownerId": 2,
+      "currency": "EUR",
+      "balance": 700,
+      "name": "Jane's Checking"
+    },
+    {
+      "accountId": "FR7630006000011234567890189",
+      "ownerId": 3,
       "currency": "GBP",
-      "balance": 4500.20,
-      "name": "Business Account"
+      "balance": 2000,
+      "name": "Emily's Savings"
     },
     {
-      "accountId": 4,
-      "customerId": 103,
-      "currency": "USD",
-      "balance": 750.00,
-      "name": "Personal Checking"
+      "accountId": "FR1420041010050500013M02606",
+      "ownerId": 3,
+      "currency": "GBP",
+      "balance": 1500,
+      "name": "Emily's Checking"
     },
     {
-      "accountId": 5,
-      "customerId": 104,
-      "currency": "USD",
-      "balance": 15000.00,
-      "name": "Investment Account"
-    },
-    {
-      "accountId": 6,
-      "customerId": 105,
+      "accountId": "ES9121000418450200051332",
+      "ownerId": 4,
       "currency": "JPY",
-      "balance": 1000000,
-      "name": "Yen Account"
+      "balance": 2500,
+      "name": "Michael's Savings"
     },
     {
-      "accountId": 7,
-      "customerId": 106,
-      "currency": "USD",
-      "balance": 2200.30,
-      "name": "Emergency Fund"
+      "accountId": "ES4321000418401234567891",
+      "ownerId": 4,
+      "currency": "JPY",
+      "balance": 2000,
+      "name": "Michael's Checking"
     },
     {
-      "accountId": 8,
-      "customerId": 107,
-      "currency": "CAD",
-      "balance": 800.75,
-      "name": "Canada Account"
-    },
-    {
-      "accountId": 9,
-      "customerId": 108,
+      "accountId": "IT60X0542811101000000123456",
+      "ownerId": 5,
       "currency": "AUD",
-      "balance": 4000.25,
-      "name": "Australia Account"
+      "balance": 3000,
+      "name": "Sarah's Savings"
     },
     {
-      "accountId": 10,
-      "customerId": 109,
-      "currency": "EUR",
-      "balance": 3500.60,
-      "name": "Europe Travel Fund"
+      "accountId": "IT40X0542811101000000123457",
+      "ownerId": 5,
+      "currency": "AUD",
+      "balance": 2800,
+      "name": "Sarah's Checking"
+    },
+    {
+      "accountId": "NL91ABNA0417164300",
+      "ownerId": 6,
+      "currency": "CAD",
+      "balance": 3500,
+      "name": "David's Savings"
+    },
+    {
+      "accountId": "NL27SNSB0917829871",
+      "ownerId": 6,
+      "currency": "CAD",
+      "balance": 3400,
+      "name": "David's Checking"
+    },
+    {
+      "accountId": "BE68539007547034",
+      "ownerId": 7,
+      "currency": "CHF",
+      "balance": 4000,
+      "name": "Linda's Savings"
+    },
+    {
+      "accountId": "BE62510007547061",
+      "ownerId": 7,
+      "currency": "CHF",
+      "balance": 3900,
+      "name": "Linda's Checking"
+    },
+    {
+      "accountId": "DK5000400440116243",
+      "ownerId": 8,
+      "currency": "CNY",
+      "balance": 4500,
+      "name": "Robert's Savings"
+    },
+    {
+      "accountId": "DK9550400123456238",
+      "ownerId": 8,
+      "currency": "CNY",
+      "balance": 4400,
+      "name": "Robert's Checking"
+    },
+    {
+      "accountId": "FI2112345600000785",
+      "ownerId": 9,
+      "currency": "INR",
+      "balance": 5000,
+      "name": "Patricia's Savings"
+    },
+    {
+      "accountId": "FI1410093000123458",
+      "ownerId": 9,
+      "currency": "INR",
+      "balance": 4900,
+      "name": "Patricia's Checking"
+    },
+    {
+      "accountId": "NO9386011117947",
+      "ownerId": 10,
+      "currency": "BRL",
+      "balance": 5500,
+      "name": "Thomas's Savings"
+    },
+    {
+      "accountId": "NO9386011117948",
+      "ownerId": 10,
+      "currency": "BRL",
+      "balance": 5400,
+      "name": "Thomas's Checking"
     }
   ],
   "currencies": [
@@ -103,86 +173,96 @@
       "code": "CAD"
     }
   ],
-  "customers": [
+  "owners": [
     {
-      "customerId": 100,
+      "ownerId": 1,
       "firstName": "John",
       "lastName": "Doe",
       "email": "john.doe@example.com",
-      "address": "123 Main St, Anytown, USA",
-      "phone": "+1234567890"
+      "address": "123 Main St",
+      "phone": "123-456-7890",
+      "preferredCurrency": "USD"
     },
     {
-      "customerId": 101,
+      "ownerId": 2,
       "firstName": "Jane",
       "lastName": "Smith",
       "email": "jane.smith@example.com",
-      "address": "456 Elm St, Othertown, USA",
-      "phone": "+0987654321"
+      "address": "456 Elm St",
+      "phone": "234-567-8901",
+      "preferredCurrency": "EUR"
     },
     {
-      "customerId": 102,
-      "firstName": "Alice",
+      "ownerId": 3,
+      "firstName": "Emily",
       "lastName": "Johnson",
-      "email": "alice.johnson@example.com",
-      "address": "789 Oak St, Sometown, USA",
-      "phone": "+1122334455"
+      "email": "emily.johnson@example.com",
+      "address": "789 Oak St",
+      "phone": "345-678-9012",
+      "preferredCurrency": "GBP"
     },
     {
-      "customerId": 103,
-      "firstName": "Bob",
-      "lastName": "Williams",
-      "email": "bob.williams@example.com",
-      "address": "101 Pine St, Anycity, USA",
-      "phone": "+1231231234"
-    },
-    {
-      "customerId": 104,
-      "firstName": "Charlie",
+      "ownerId": 4,
+      "firstName": "Michael",
       "lastName": "Brown",
-      "email": "charlie.brown@example.com",
-      "address": "202 Birch St, Anystate, USA",
-      "phone": "+3213214321"
+      "email": "michael.brown@example.com",
+      "address": "101 Maple St",
+      "phone": "456-789-0123",
+      "preferredCurrency": "JPY"
     },
     {
-      "customerId": 105,
-      "firstName": "Dave",
+      "ownerId": 5,
+      "firstName": "Sarah",
       "lastName": "Davis",
-      "email": "dave.davis@example.com",
-      "address": "303 Cedar St, Newcity, USA",
-      "phone": "+9876543210"
+      "email": "sarah.davis@example.com",
+      "address": "202 Pine St",
+      "phone": "567-890-1234",
+      "preferredCurrency": "AUD"
     },
     {
-      "customerId": 106,
-      "firstName": "Eve",
-      "lastName": "Miller",
-      "email": "eve.miller@example.com",
-      "address": "404 Willow St, Oldcity, USA",
-      "phone": "+1010101010"
-    },
-    {
-      "customerId": 107,
-      "firstName": "Frank",
-      "lastName": "Moore",
-      "email": "frank.moore@example.com",
-      "address": "505 Aspen St, Smalltown, USA",
-      "phone": "+2020202020"
-    },
-    {
-      "customerId": 108,
-      "firstName": "Grace",
+      "ownerId": 6,
+      "firstName": "David",
       "lastName": "Wilson",
-      "email": "grace.wilson@example.com",
-      "address": "606 Spruce St, Bigtown, USA",
-      "phone": "+3030303030"
+      "email": "david.wilson@example.com",
+      "address": "303 Birch St",
+      "phone": "678-901-2345",
+      "preferredCurrency": "USD"
     },
     {
-      "customerId": 109,
-      "firstName": "Hank",
+      "ownerId": 7,
+      "firstName": "Linda",
+      "lastName": "Martinez",
+      "email": "linda.martinez@example.com",
+      "address": "404 Cedar St",
+      "phone": "789-012-3456",
+      "preferredCurrency": "EUR"
+    },
+    {
+      "ownerId": 8,
+      "firstName": "Robert",
+      "lastName": "Lee",
+      "email": "robert.lee@example.com",
+      "address": "505 Spruce St",
+      "phone": "890-123-4567",
+      "preferredCurrency": "GBP"
+    },
+    {
+      "ownerId": 9,
+      "firstName": "Patricia",
       "lastName": "Taylor",
-      "email": "hank.taylor@example.com",
-      "address": "707 Fir St, Littletown, USA",
-      "phone": "+4040404040"
+      "email": "patricia.taylor@example.com",
+      "address": "606 Walnut St",
+      "phone": "901-234-5678",
+      "preferredCurrency": "JPY"
+    },
+    {
+      "ownerId": 10,
+      "firstName": "Thomas",
+      "lastName": "Anderson",
+      "email": "thomas.anderson@example.com",
+      "address": "707 Willow St",
+      "phone": "012-345-6789",
+      "preferredCurrency": "AUD"
     }
   ],
   "transfers": [

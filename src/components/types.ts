@@ -1,5 +1,5 @@
 export interface IAccount {
-  accountId: number;
+  accountId: string;
   ownerId: number;
   currency: string;
   balance: number;
@@ -12,4 +12,22 @@ export interface ITransfer {
   toAccount: number;
   amount: number;
   date: string;
+}
+
+export interface ICurrency {
+  currencyId: number;
+  name: string;
+  symbol: string;
+  code: string;
+}
+
+export interface IOwner {
+  ownerId: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  address: string;
+  phone: string;
+  preferedCurrency?: string;
+  savedAccounts: string[];
 }
