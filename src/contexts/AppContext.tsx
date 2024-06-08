@@ -23,7 +23,6 @@ export const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => 
       try {
         const currencies = await getCurrencies();
         setCurrencies(currencies);
-        message.success("Great success");
       } catch (error) {
         // TODO retry if some type of managable error
         message.error('Failed to fetch currencies');
@@ -46,7 +45,6 @@ export const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => 
       setLoading(false);
     });
   }, []);
-  console.log(loading, owner, currencies);
 
   return (
     <AppContext.Provider value={{ currencies, owner }}>

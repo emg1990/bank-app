@@ -10,3 +10,7 @@
   justify-content: center;
   gap: 10px;
 }
+
+:global(.slick-arrow) {
+  color: #000 !important;
+}

@@ -12,9 +12,9 @@ const PersonalAccount: React.FC<PersonalAccountProps> = ({ account }) => {
     <div className={styles.container}>
       <Card className={styles.cardContainer}>
         <div className={styles.cardContent}>
-        <span>Account ID: {account.id}</span>
-        <span>{account.currency}</span>
-        <span>Balance: ${account.balance}</span>
+        <span>{account.name}</span>
+        <span>IBAN: {account.id}</span>
+        <span>Balance: {account.balance} {account.currency}</span>
         </div>
       </Card>
     </div>

@@ -4,36 +4,23 @@ import { IAccount } from '../../../types/types';
 import PersonalAccount from './PersonalAccount/PersonalAccount';
 import useDimensions from '../../../hooks/useDimensions';
 import styles from './PersonalAccountsList.module.css'
+import { getMyAccounts } from '../../../api/accountsApi';
+import { useAppContext } from '../../../contexts/AppContext';
 
-const PersonalAccounts = () => {
+const PersonalAccountsList = () => {
   const [accounts, setAccounts] = useState<IAccount[]>([]);
   const { width } = useDimensions();
+  const { owner } = useAppContext();
   useEffect(() => {
-    const mockAccounts: IAccount[] = [
-      {
-        id: '1',
-        ownerId: 1,
-        name: 'Account 1',
-        balance: 1000,
-        currency: 'USD'
-      },
-      {
-        id: '2',
-        ownerId: 1,
-        name: 'Account 2',
-        balance: 2000,
-        currency: 'EUR'
-      },
-      {
-        id: '3',
-        ownerId: 1,
-        name: 'Account 3',
-        balance: 3000,
-        currency: 'USD'
+    const fetchMyAccounts = async () => {
+      try {
+        const fetchedAccounts = await getMyAccounts(owner.id);
+        setAccounts(fetchedAccounts);
+      } catch (error) {
+        console.error('Failed to fetch currencies:', error);
       }
-    ];
-
-    setAccounts(mockAccounts);
+    };
+    fetchMyAccounts();
   }, [])
   const totalBalance = useMemo(() => {
     const balanceByCurrency: Record<string, number> = {};
@@ -46,12 +33,14 @@ const PersonalAccounts = () => {
     });
     return balanceByCurrency;
   }, [accounts]);
+  console.log(totalBalance);
   /**
    * The number of cards to show based on the width of the container.
    * It is calculated by dividing the width by the sum of the card width, gap and padding.
    * Defaulting to 1 to avoid Carousel deviding by 0
    */
   const cardsToShow = Math.min(Math.floor(width / (300 + 30 + 50)), accounts.length) || 1;
+
   return (
     <div className={styles.container}>
       <div className={styles.balance}>
@@ -59,7 +48,11 @@ const PersonalAccounts = () => {
           <span key={currency}>{totalBalance[currency]} <strong>{currency}</strong></span>
         ))}
       </div>
-      <Carousel autoplay={accounts.length > cardsToShow} slidesToShow={cardsToShow}>
+      <Carousel
+        arrows
+        autoplay={accounts.length > cardsToShow}
+        slidesToShow={cardsToShow}
+      >
         {accounts.map(account => (
           <PersonalAccount account={account} key={account.id}/>
         ))}
@@ -68,4 +61,4 @@ const PersonalAccounts = () => {
   );
 };
 
-export default PersonalAccounts;
+export default PersonalAccountsList;

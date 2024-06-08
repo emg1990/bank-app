@@ -1,6 +1,7 @@
 export interface IAccount {
   id: string;
   ownerId: number;
+  ownerDisplayName: string;
   currency: string;
   balance: number;
   name?: string;
@@ -8,8 +9,8 @@ export interface IAccount {
 
 export interface ITransfer {
   transferId: number;
-  fromAccount: number;
-  toAccount: number;
+  fromAccount: string;
+  toAccount: string;
   amount: number;
   date: string;
 }
@@ -24,6 +25,7 @@ export interface IOwner {
   id: number;
   firstName: string;
   lastName: string;
+  displayName: string;
   email: string;
   address: string;
   phone: string;

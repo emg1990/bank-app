@@ -1,14 +1,14 @@
 import axios, { type AxiosResponse } from 'axios';
 import { IAccount } from '../types/types';
-import { BASE_URL } from '../config';
+import { BASE_URL, OWNER_ID } from '../config';
 
 // Accounts Endpoints
 // should not need to provide savedAccounts, filter should be done in BE
-export const getAccounts = async (ownerId: number, savedAccounts: string[]): Promise<IAccount[]> => {
+export const getAccounts = async (savedAccounts: string[]): Promise<IAccount[]> => {
   try {
     const response: AxiosResponse<IAccount[]> = await axios.get(`${BASE_URL}/accounts`);
     return response.data.filter(account => (
-      savedAccounts.includes(account.id) || account.ownerId == ownerId // doing simple ownerId validation due to json-server only accepting ids as string
+      savedAccounts.includes(account.id) || account.ownerId === OWNER_ID // doing simple ownerId validation due to json-server only accepting ids as string
     ))
   } catch (error) {
     console.error("Error fetching accounts", error);
@@ -16,12 +16,12 @@ export const getAccounts = async (ownerId: number, savedAccounts: string[]): Pro
   }
 };
 
-export const getAccountById = async (id: number): Promise<IAccount> => {
+export const getMyAccounts = async (ownerId: number): Promise<IAccount[]> => {
   try {
-    const response: AxiosResponse<IAccount> = await axios.get(`${BASE_URL}/accounts/${id}`);
+    const response: AxiosResponse<IAccount[]> = await axios.get(`${BASE_URL}/accounts?ownerId=${ownerId}`);
     return response.data;
   } catch (error) {
-    console.error(`Error fetching account with ID ${id}`, error);
+    console.error(`Error fetching account with owner id ${ownerId}`, error);
     throw error;
   }
 };

@@ -14,7 +14,7 @@ const AccountsList = () => {
   useEffect(() => {
     const fetchLinkedAccounts = async () => {
       try {
-        const fetchedAccounts = await getAccounts(owner.id, owner.savedAccounts);
+        const fetchedAccounts = await getAccounts(owner.savedAccounts);
         setAccounts(fetchedAccounts);
       } catch (error) {
         console.error('Failed to fetch currencies:', error);

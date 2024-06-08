@@ -6,7 +6,6 @@ import { BASE_URL } from '../config';
 export const getOwner = async (id: number): Promise<IOwner> => {
   try {
     const response: AxiosResponse<IOwner> = await axios.get(`${BASE_URL}/owners/${id}`);
-    console.log('owner lala', response.data);
     return response.data;
   } catch (error) {
     console.error(`Error fetching owner with ID ${id}`, error);

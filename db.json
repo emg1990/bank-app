@@ -3,142 +3,162 @@
     {
       "id": "GB33BUKB20201555555555",
       "ownerId": 1,
-      "currency": "USD",
+      "currency": "GBP",
       "balance": 1200,
-      "name": "John's Savings"
+      "name": "John's Savings",
+      "ownerDisplayName": "John Doe"
     },
     {
       "id": "GB94BARC10201530093459",
       "ownerId": 1,
       "currency": "USD",
       "balance": 800,
-      "name": "John's Checking"
+      "name": "John's Checking",
+      "ownerDisplayName": "John Doe"
+    },
+    {
+      "id": "DE75512108001245126199",
+      "ownerId": 1,
+      "currency": "EUR",
+      "balance": 700,
+      "name": "John's Europe",
+      "ownerDisplayName": "John Doe"
+    },
+    {
+      "id": "IT60X0542811101000000123456",
+      "ownerId": 1,
+      "currency": "AUD",
+      "balance": 3000,
+      "name": "John's International",
+      "ownerDisplayName": "John Doe"
     },
     {
       "id": "DE89370400440532013000",
       "ownerId": 2,
       "currency": "EUR",
       "balance": 1100,
-      "name": "Jane's Savings"
-    },
-    {
-      "id": "DE75512108001245126199",
-      "ownerId": 2,
-      "currency": "EUR",
-      "balance": 700,
-      "name": "Jane's Checking"
+      "name": "Jane's Savings",
+      "ownerDisplayName": "Jane Smith"
     },
     {
       "id": "FR7630006000011234567890189",
       "ownerId": 3,
       "currency": "GBP",
       "balance": 2000,
-      "name": "Emily's Savings"
+      "name": "Emily's Savings",
+      "ownerDisplayName": "Emily Johnson"
     },
     {
       "id": "FR1420041010050500013M02606",
       "ownerId": 3,
       "currency": "GBP",
       "balance": 1500,
-      "name": "Emily's Checking"
+      "name": "Emily's Checking",
+      "ownerDisplayName": "Emily Johnson"
     },
     {
       "id": "ES9121000418450200051332",
       "ownerId": 4,
       "currency": "JPY",
       "balance": 2500,
-      "name": "Michael's Savings"
+      "name": "Michael's Savings",
+      "ownerDisplayName": "Michael Brown"
     },
     {
       "id": "ES4321000418401234567891",
       "ownerId": 4,
       "currency": "JPY",
       "balance": 2000,
-      "name": "Michael's Checking"
-    },
-    {
-      "id": "IT60X0542811101000000123456",
-      "ownerId": 5,
-      "currency": "AUD",
-      "balance": 3000,
-      "name": "Sarah's Savings"
+      "name": "Michael's Checking",
+      "ownerDisplayName": "Michael Brown"
     },
     {
       "id": "IT40X0542811101000000123457",
       "ownerId": 5,
       "currency": "AUD",
       "balance": 2800,
-      "name": "Sarah's Checking"
+      "name": "Sarah's Checking",
+      "ownerDisplayName": "Sarah Davis"
     },
     {
       "id": "NL91ABNA0417164300",
       "ownerId": 6,
-      "currency": "CAD",
+      "currency": "USD",
       "balance": 3500,
-      "name": "David's Savings"
+      "name": "David's Savings",
+      "ownerDisplayName": "David Miller"
     },
     {
       "id": "NL27SNSB0917829871",
       "ownerId": 6,
-      "currency": "CAD",
+      "currency": "USD",
       "balance": 3400,
-      "name": "David's Checking"
+      "name": "David's Checking",
+      "ownerDisplayName": "David Miller"
     },
     {
       "id": "BE68539007547034",
       "ownerId": 7,
-      "currency": "CHF",
+      "currency": "EUR",
       "balance": 4000,
-      "name": "Linda's Savings"
+      "name": "Linda's Savings",
+      "ownerDisplayName": "Linda Martinez"
     },
     {
       "id": "BE62510007547061",
       "ownerId": 7,
-      "currency": "CHF",
+      "currency": "EUR",
       "balance": 3900,
-      "name": "Linda's Checking"
+      "name": "Linda's Checking",
+      "ownerDisplayName": "Linda Martinez"
     },
     {
       "id": "DK5000400440116243",
       "ownerId": 8,
-      "currency": "CNY",
+      "currency": "GBP",
       "balance": 4500,
-      "name": "Robert's Savings"
+      "name": "Robert's Savings",
+      "ownerDisplayName": "Robert Lee"
     },
     {
       "id": "DK9550400123456238",
       "ownerId": 8,
-      "currency": "CNY",
+      "currency": "GBP",
       "balance": 4400,
-      "name": "Robert's Checking"
+      "name": "Robert's Checking",
+      "ownerDisplayName": "Robert Lee"
     },
     {
       "id": "FI2112345600000785",
       "ownerId": 9,
-      "currency": "INR",
+      "currency": "JPY",
       "balance": 5000,
-      "name": "Patricia's Savings"
+      "name": "Patricia's Savings",
+      "ownerDisplayName": "Patricia Clark"
     },
     {
       "id": "FI1410093000123458",
       "ownerId": 9,
-      "currency": "INR",
+      "currency": "JPY",
       "balance": 4900,
-      "name": "Patricia's Checking"
+      "name": "Patricia's Checking",
+      "ownerDisplayName": "Patricia Clark"
     },
     {
       "id": "NO9386011117947",
       "ownerId": 10,
-      "currency": "BRL",
+      "currency": "AUD",
       "balance": 5500,
-      "name": "Thomas's Savings"
+      "name": "Thomas's Savings",
+      "ownerDisplayName": "Thomas Harris"
     },
     {
       "id": "NO9386011117948",
       "ownerId": 10,
-      "currency": "BRL",
+      "currency": "AUD",
       "balance": 5400,
-      "name": "Thomas's Checking"
+      "name": "Thomas's Checking",
+      "ownerDisplayName": "Thomas Harris"
     }
   ],
   "currencies": [
@@ -173,6 +193,7 @@
       "id": "1",
       "firstName": "John",
       "lastName": "Doe",
+      "displayName": "John Doe",
       "email": "john.doe@example.com",
       "address": "123 Main St",
       "phone": "123-456-7890",
@@ -186,6 +207,7 @@
       "id": "2",
       "firstName": "Jane",
       "lastName": "Smith",
+      "displayName": "Jane Smith",
       "email": "jane.smith@example.com",
       "address": "456 Elm St",
       "phone": "234-567-8901",
@@ -199,6 +221,7 @@
       "id": "3",
       "firstName": "Emily",
       "lastName": "Johnson",
+      "displayName": "Emily Johnson",
       "email": "emily.johnson@example.com",
       "address": "789 Oak St",
       "phone": "345-678-9012",
@@ -212,6 +235,7 @@
       "id": "4",
       "firstName": "Michael",
       "lastName": "Brown",
+      "displayName": "Michael Brown",
       "email": "michael.brown@example.com",
       "address": "101 Maple St",
       "phone": "456-789-0123",
@@ -225,6 +249,7 @@
       "id": "5",
       "firstName": "Sarah",
       "lastName": "Davis",
+      "displayName": "Sarah Davis",
       "email": "sarah.davis@example.com",
       "address": "202 Pine St",
       "phone": "567-890-1234",
@@ -238,6 +263,7 @@
       "id": "6",
       "firstName": "David",
       "lastName": "Miller",
+      "displayName": "David Miller",
       "email": "david.miller@example.com",
       "address": "303 Birch St",
       "phone": "678-901-2345",
@@ -251,6 +277,7 @@
       "id": "7",
       "firstName": "Linda",
       "lastName": "Martinez",
+      "displayName": "Linda Martinez",
       "email": "linda.martinez@example.com",
       "address": "404 Cedar St",
       "phone": "789-012-3456",
@@ -264,6 +291,7 @@
       "id": "8",
       "firstName": "Robert",
       "lastName": "Lee",
+      "displayName": "Robert Lee",
       "email": "robert.lee@example.com",
       "address": "505 Willow St",
       "phone": "890-123-4567",
@@ -277,6 +305,7 @@
       "id": "9",
       "firstName": "Patricia",
       "lastName": "Clark",
+      "displayName": "Patricia Clark",
       "email": "patricia.clark@example.com",
       "address": "606 Walnut St",
       "phone": "901-234-5678",
@@ -290,6 +319,7 @@
       "id": "10",
       "firstName": "Thomas",
       "lastName": "Harris",
+      "displayName": "Thomas Harris",
       "email": "thomas.harris@example.com",
       "address": "707 Spruce St",
       "phone": "012-345-6789",
@@ -303,22 +333,22 @@
   "transfers": [
     {
       "transferId": "1",
-      "fromAccount": 1,
-      "toAccount": 2,
+      "fromAccount": "GB33BUKB20201555555555",
+      "toAccount": "NL91ABNA0417164300",
       "amount": 500.00,
       "date": "2024-06-01T12:00:00Z"
     },
     {
       "transferId": "2",
-      "fromAccount": 2,
-      "toAccount": 3,
+      "fromAccount": "BE68539007547034",
+      "toAccount": "IT60X0542811101000000123456",
       "amount": 250.00,
       "date": "2024-06-02T14:30:00Z"
     },
     {
       "transferId": "3",
-      "fromAccount": 3,
-      "toAccount": 1,
+      "fromAccount": "DE75512108001245126199",
+      "toAccount": "FI1410093000123458",
       "amount": 100.00,
       "date": "2024-06-03T16:00:00Z"
     }
