@@ -27,7 +27,7 @@
     {
       "id": "IT60X0542811101000000123456",
       "ownerId": 1,
-      "currency": "AUD",
+      "currency": "EUR",
       "balance": 3000,
       "name": "John's International",
       "ownerDisplayName": "John Doe"
@@ -36,128 +36,97 @@
       "id": "DE89370400440532013000",
       "ownerId": 2,
       "currency": "EUR",
-      "balance": 1100,
-      "name": "Jane's Savings",
       "ownerDisplayName": "Jane Smith"
     },
     {
       "id": "FR7630006000011234567890189",
       "ownerId": 3,
       "currency": "GBP",
-      "balance": 2000,
-      "name": "Emily's Savings",
       "ownerDisplayName": "Emily Johnson"
     },
     {
       "id": "FR1420041010050500013M02606",
       "ownerId": 3,
       "currency": "GBP",
-      "balance": 1500,
-      "name": "Emily's Checking",
-      "ownerDisplayName": "Emily Johnson"
+      "ownerDisplayName": "Emily Johnson",
+      "name": "Account 1"
     },
     {
       "id": "ES9121000418450200051332",
       "ownerId": 4,
       "currency": "JPY",
-      "balance": 2500,
-      "name": "Michael's Savings",
       "ownerDisplayName": "Michael Brown"
     },
     {
       "id": "ES4321000418401234567891",
       "ownerId": 4,
       "currency": "JPY",
-      "balance": 2000,
-      "name": "Michael's Checking",
       "ownerDisplayName": "Michael Brown"
     },
     {
       "id": "IT40X0542811101000000123457",
       "ownerId": 5,
-      "currency": "AUD",
-      "balance": 2800,
-      "name": "Sarah's Checking",
+      "currency": "EUR",
       "ownerDisplayName": "Sarah Davis"
     },
     {
       "id": "NL91ABNA0417164300",
       "ownerId": 6,
       "currency": "USD",
-      "balance": 3500,
-      "name": "David's Savings",
       "ownerDisplayName": "David Miller"
     },
     {
       "id": "NL27SNSB0917829871",
       "ownerId": 6,
       "currency": "USD",
-      "balance": 3400,
-      "name": "David's Checking",
       "ownerDisplayName": "David Miller"
     },
     {
       "id": "BE68539007547034",
       "ownerId": 7,
       "currency": "EUR",
-      "balance": 4000,
-      "name": "Linda's Savings",
       "ownerDisplayName": "Linda Martinez"
     },
     {
       "id": "BE62510007547061",
       "ownerId": 7,
       "currency": "EUR",
-      "balance": 3900,
-      "name": "Linda's Checking",
       "ownerDisplayName": "Linda Martinez"
     },
     {
       "id": "DK5000400440116243",
       "ownerId": 8,
       "currency": "GBP",
-      "balance": 4500,
-      "name": "Robert's Savings",
       "ownerDisplayName": "Robert Lee"
     },
     {
       "id": "DK9550400123456238",
       "ownerId": 8,
       "currency": "GBP",
-      "balance": 4400,
-      "name": "Robert's Checking",
       "ownerDisplayName": "Robert Lee"
     },
     {
       "id": "FI2112345600000785",
       "ownerId": 9,
       "currency": "JPY",
-      "balance": 5000,
-      "name": "Patricia's Savings",
       "ownerDisplayName": "Patricia Clark"
     },
     {
       "id": "FI1410093000123458",
       "ownerId": 9,
       "currency": "JPY",
-      "balance": 4900,
-      "name": "Patricia's Checking",
       "ownerDisplayName": "Patricia Clark"
     },
     {
       "id": "NO9386011117947",
       "ownerId": 10,
-      "currency": "AUD",
-      "balance": 5500,
-      "name": "Thomas's Savings",
+      "currency": "EUR",
       "ownerDisplayName": "Thomas Harris"
     },
     {
       "id": "NO9386011117948",
       "ownerId": 10,
-      "currency": "AUD",
-      "balance": 5400,
-      "name": "Thomas's Checking",
+      "currency": "EUR",
       "ownerDisplayName": "Thomas Harris"
     }
   ],
@@ -165,27 +134,32 @@
     {
       "code": "USD",
       "name": "United States Dollar",
-      "symbol": "$"
+      "symbol": "$",
+      "id": "d7f6"
     },
     {
       "code": "EUR",
       "name": "Euro",
-      "symbol": "€"
+      "symbol": "€",
+      "id": "d15b"
     },
     {
       "code": "GBP",
       "name": "British Pound Sterling",
-      "symbol": "£"
+      "symbol": "£",
+      "id": "f98f"
     },
     {
       "code": "JPY",
       "name": "Japanese Yen",
-      "symbol": "¥"
+      "symbol": "¥",
+      "id": "1d5a"
     },
     {
       "code": "CAD",
       "name": "Canadian Dollar",
-      "symbol": "C$"
+      "symbol": "C$",
+      "id": "db11"
     }
   ],
   "owners": [
@@ -200,7 +174,13 @@
       "preferredCurrency": "USD",
       "savedAccounts": [
         "DE89370400440532013000",
-        "DE75512108001245126199"
+        "DE75512108001245126199",
+        "FR1420041010050500013M02606",
+        "FR1420041010050500013M02606",
+        "FR1420041010050500013M02606",
+        "FR1420041010050500013M02606",
+        "FR1420041010050500013M02606",
+        "FR1420041010050500013M02606"
       ]
     },
     {
@@ -253,7 +233,7 @@
       "email": "sarah.davis@example.com",
       "address": "202 Pine St",
       "phone": "567-890-1234",
-      "preferredCurrency": "AUD",
+      "preferredCurrency": "EUR",
       "savedAccounts": [
         "IT60X0542811101000000123456",
         "IT40X0542811101000000123457"
@@ -323,7 +303,7 @@
       "email": "thomas.harris@example.com",
       "address": "707 Spruce St",
       "phone": "012-345-6789",
-      "preferredCurrency": "AUD",
+      "preferredCurrency": "EUR",
       "savedAccounts": [
         "NO9386011117947",
         "NO9386011117948"
@@ -335,22 +315,25 @@
       "transferId": "1",
       "fromAccount": "GB33BUKB20201555555555",
       "toAccount": "NL91ABNA0417164300",
-      "amount": 500.00,
-      "date": "2024-06-01T12:00:00Z"
+      "amount": 500,
+      "date": "2024-06-01T12:00:00Z",
+      "id": "1a45"
     },
     {
       "transferId": "2",
       "fromAccount": "BE68539007547034",
       "toAccount": "IT60X0542811101000000123456",
-      "amount": 250.00,
-      "date": "2024-06-02T14:30:00Z"
+      "amount": 250,
+      "date": "2024-06-02T14:30:00Z",
+      "id": "ca6b"
     },
     {
       "transferId": "3",
       "fromAccount": "DE75512108001245126199",
       "toAccount": "FI1410093000123458",
-      "amount": 100.00,
-      "date": "2024-06-03T16:00:00Z"
+      "amount": 100,
+      "date": "2024-06-03T16:00:00Z",
+      "id": "c361"
     }
   ]
 }

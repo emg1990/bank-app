@@ -1,5 +1,5 @@
 import React from 'react';
-import { IAccount } from '../../../../types/types';
+import { IAccount } from '../../../../util/types';
 import { Button, List, Popconfirm } from 'antd';
 import { DeleteOutlined, EditOutlined, UserOutlined } from '@ant-design/icons';
 import styles from './AccountRow.module.css';

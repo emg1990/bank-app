@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'antd';
-import { IAccount } from '../../../../types/types';
+import { IAccount } from '../../../../util/types';
 import styles from './PersonalAccount.module.css';
 
 interface PersonalAccountProps {

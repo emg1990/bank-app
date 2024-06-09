@@ -1,5 +1,5 @@
 import axios, { type AxiosResponse } from 'axios';
-import { ITransfer } from '../types/types';
+import { ITransfer } from '../util/types';
 import { BASE_URL } from '../config';
 
 // Transfers Endpoints

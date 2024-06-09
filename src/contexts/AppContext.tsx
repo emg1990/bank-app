@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { ICurrency, IOwner } from "../types/types";
+import { ICurrency, IOwner } from "../util/types";
 import { getCurrencies } from "../api/currenciesApi";
 import { message } from "antd";
 import { getOwner } from "../api/ownersApi";
@@ -8,6 +8,7 @@ import { getOwner } from "../api/ownersApi";
 interface IAppContext {
   owner: IOwner;
   currencies: ICurrency[];
+  updateOwnerSavedAccounts: (savedAccounts: string[]) => void;
 }
 
 const AppContext = createContext<IAppContext | null>(null);
@@ -46,8 +47,12 @@ export const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => 
     });
   }, []);
 
+  const updateOwnerSavedAccounts = (savedAccounts: string[]) => {
+    setOwner({ ...owner, savedAccounts });
+  };
+
   return (
-    <AppContext.Provider value={{ currencies, owner }}>
+    <AppContext.Provider value={{ currencies, owner, updateOwnerSavedAccounts }}>
       {!loading && children}
     </AppContext.Provider>
   );

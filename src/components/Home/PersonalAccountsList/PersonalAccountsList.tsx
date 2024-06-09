@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Carousel } from 'antd';
-import { IAccount } from '../../../types/types';
+import { IAccount } from '../../../util/types';
 import PersonalAccount from './PersonalAccount/PersonalAccount';
 import useDimensions from '../../../hooks/useDimensions';
 import styles from './PersonalAccountsList.module.css'
