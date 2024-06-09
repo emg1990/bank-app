@@ -10,21 +10,39 @@ export const getAccounts = async (savedAccounts: string[]): Promise<IAccount[]> 
     // should not need to provide savedAccounts, filter should be done in BE
     // TODO filter my accounts first
     return response.data.filter(account => (
-      savedAccounts.includes(account.id) || account.ownerId === OWNER_ID // doing simple ownerId validation due to json-server only accepting ids as string
+      savedAccounts.includes(account.id)
     ))
   } catch (error) {
-    console.error("Error fetching accounts", error);
-    throw error;
+    if (axios.isAxiosError(error)) {
+      const axiosError: AxiosError = error;
+      if (axiosError.response?.status === 404) {
+        return [];
+      } else if (axiosError.response?.status === 401) {
+        throw new Error(`You are not authorized to fetch accounts`);
+      } else if (axiosError.response?.status === 403) {
+        throw new Error(`You do not have permission to fetch accounts`);
+      }
+    }
+    throw new Error(`Oops! Something went wrong please try again later`);
   }
 };
 
-export const getMyAccounts = async (ownerId: number): Promise<IAccount[]> => {
+export const getMyAccounts = async (): Promise<IAccount[]> => {
   try {
-    const response: AxiosResponse<IAccount[]> = await axios.get(`${BASE_URL}/accounts?ownerId=${ownerId}`);
+    const response: AxiosResponse<IAccount[]> = await axios.get(`${BASE_URL}/accounts?ownerId=${OWNER_ID}`);
     return response.data;
   } catch (error) {
-    console.error(`Error fetching account with owner id ${ownerId}`, error);
-    throw error;
+    if (axios.isAxiosError(error)) {
+      const axiosError: AxiosError = error;
+      if (axiosError.response?.status === 404) {
+        return [];
+      } else if (axiosError.response?.status === 401) {
+        throw new Error(`You are not authorized to fetch accounts`);
+      } else if (axiosError.response?.status === 403) {
+        throw new Error(`You do not have permission to fetch accounts`);
+      }
+    }
+    throw new Error(`Oops! Something went wrong please try again later`);
   }
 };
 

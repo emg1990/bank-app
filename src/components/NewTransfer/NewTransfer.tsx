@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import NewTransferButton from './NewTransferButton';
-import NewTransferModal from './NewTransferModal';
+import { Button } from 'antd';
+import NewTransferModal from './NewTransferModal/NewTransferModal';
+import styles from './NewTransfer.module.css';
 
 const NewTransfer: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,16 +14,18 @@ const NewTransfer: React.FC = () => {
     setIsModalOpen(false);
   };
 
-  const makeTransfer = () => {
-    // Make transfer
-    // Clear form
-    closeNewTransferModal();
-  }
-
   return (
     <>
-      <NewTransferButton openNewTransferModal={openNewTransferModal} />
-      <NewTransferModal open={isModalOpen} onOk={makeTransfer} onCancel={closeNewTransferModal} />
+      <Button
+        onClick={openNewTransferModal}
+        className={styles.button}
+        shape="round"
+        type='primary'
+        size="large"
+      >
+        New Transfer
+      </Button>
+      {isModalOpen && <NewTransferModal open={isModalOpen} onCancel={closeNewTransferModal} />}
     </>
   );
 };

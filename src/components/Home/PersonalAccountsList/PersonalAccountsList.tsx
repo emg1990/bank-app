@@ -5,23 +5,23 @@ import PersonalAccount from './PersonalAccount/PersonalAccount';
 import useDimensions from '../../../hooks/useDimensions';
 import styles from './PersonalAccountsList.module.css'
 import { getMyAccounts } from '../../../api/accountsApi';
-import { useAppContext } from '../../../contexts/AppContext';
 
 const PersonalAccountsList = () => {
   const [accounts, setAccounts] = useState<IAccount[]>([]);
   const { width } = useDimensions();
-  const { owner } = useAppContext();
+
   useEffect(() => {
     const fetchMyAccounts = async () => {
       try {
-        const fetchedAccounts = await getMyAccounts(owner.id);
+        const fetchedAccounts = await getMyAccounts();
         setAccounts(fetchedAccounts);
       } catch (error) {
         console.error('Failed to fetch currencies:', error);
       }
     };
     fetchMyAccounts();
-  }, [])
+  }, []);
+
   const totalBalance = useMemo(() => {
     const balanceByCurrency: Record<string, number> = {};
     accounts.forEach(account => {

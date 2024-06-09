@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, List } from 'antd';
+import { Button, Card, List, message } from 'antd';
 import { IAccount } from '../../../util/types';
 import AccountRow from './AccountRow/AccountRow';
-import { getAccounts } from '../../../api/accountsApi';
+import { getAccounts, getMyAccounts } from '../../../api/accountsApi';
 import { useAppContext } from '../../../contexts/AppContext';
 import AddAccountModal from './AccountModal/AccountModal';
 
@@ -16,10 +16,10 @@ const AccountsList = () => {
     const fetchLinkedAccounts = async () => {
       try {
         // TODO store list of accounts in appContext
-        const fetchedAccounts = await getAccounts(owner.savedAccounts);
-        setAccounts(fetchedAccounts);
+        const fetchedAccounts = await Promise.all([getMyAccounts(), getAccounts(owner.savedAccounts)]);
+        setAccounts(fetchedAccounts.flat());
       } catch (error) {
-        console.error('Failed to fetch currencies:', error);
+        message.error((error as Error).message);
       }
     };
     fetchLinkedAccounts();

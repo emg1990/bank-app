@@ -134,31 +134,31 @@
       "code": "USD",
       "name": "United States Dollar",
       "symbol": "$",
-      "id": "d7f6"
+      "rate": 1.00
     },
     {
       "code": "EUR",
       "name": "Euro",
       "symbol": "€",
-      "id": "d15b"
+      "rate": 0.85
     },
     {
       "code": "GBP",
       "name": "British Pound Sterling",
       "symbol": "£",
-      "id": "f98f"
+      "rate": 0.75
     },
     {
       "code": "JPY",
       "name": "Japanese Yen",
       "symbol": "¥",
-      "id": "1d5a"
+      "rate": 110.00
     },
     {
       "code": "CAD",
       "name": "Canadian Dollar",
       "symbol": "C$",
-      "id": "db11"
+      "rate": 1.25
     }
   ],
   "owners": [

@@ -14,3 +14,8 @@ export function getParsedCurrencyByCode(code: string, currencies: ICurrency[]) {
   const currency = getCurrencyByCode(code, currencies);
   return `${currency.name} - ${currency.code} - ${currency.symbol}`;
 }
+
+export function getCurrencyConvertedAmount(amount: number, fromCurrency: ICurrency, toCurrency: ICurrency) {
+  console.log('amount', amount, 'fromCurrency', fromCurrency, 'toCurrency', toCurrency)
+  return amount * toCurrency.rate / fromCurrency.rate;
+}

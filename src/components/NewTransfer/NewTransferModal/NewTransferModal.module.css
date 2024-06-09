@@ -1,0 +1,6 @@
+.stepsContainer {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  gap: 20px;
+}
