@@ -52,7 +52,8 @@ const AccountModal: React.FC<AccountModalProps> = ({ open, onCancel, account }) 
         updateOwnerSavedAccounts(owner.savedAccounts);
       } else {
         await createAccount(updatedAccount);
-        updateOwnerSavedAccounts([...owner.savedAccounts, updatedAccount.id]);
+        const uniqueAccounts = [...new Set([...owner.savedAccounts, updatedAccount.id])];
+        updateOwnerSavedAccounts(uniqueAccounts);
       }
       onCancel();
     } catch (error) {

@@ -1,8 +1,10 @@
 import React from 'react';
-import { IAccount } from '../../../../util/types';
 import { Button, List, Popconfirm } from 'antd';
 import { DeleteOutlined, EditOutlined, UserOutlined } from '@ant-design/icons';
+import { IAccount } from '../../../../util/types';
+import { deleteAccount } from '../../../../api/accountsApi';
 import styles from './AccountRow.module.css';
+import { useAppContext } from '../../../../contexts/AppContext';
 
 const { Item } = List;
 
@@ -12,9 +14,13 @@ interface AccountRowProps {
 }
 
 const AccountRow: React.FC<AccountRowProps> = ({ account, onEdit }) => {
+  const { owner, updateOwnerSavedAccounts } = useAppContext();
+
   const onDelete = () => {
-    // Delete account
+    deleteAccount(account);
+    updateOwnerSavedAccounts(owner.savedAccounts.filter(id => id !== account.id));
   };
+
   return (
     <Item>
       <Item.Meta

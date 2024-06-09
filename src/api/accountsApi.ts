@@ -1,7 +1,7 @@
 import axios, { AxiosError, type AxiosResponse } from 'axios';
 import { IAccount } from '../util/types';
 import { BASE_URL, OWNER_ID } from '../config';
-import { addOwnerSavedAccounts } from './ownersApi';
+import { addOwnerSavedAccounts, deleteOwnerSavedAccounts } from './ownersApi';
 
 // Accounts Endpoints
 export const getAccounts = async (savedAccounts: string[]): Promise<IAccount[]> => {
@@ -85,11 +85,20 @@ export const updateAccount = async (account: IAccount): Promise<IAccount> => {
   }
 };
 
-export const deleteAccount = async (id: number): Promise<void> => {
+export const deleteAccount = async (account: IAccount): Promise<void> => {
   try {
-    await axios.delete(`${BASE_URL}/accounts/${id}`);
-  } catch (error) {
-    console.error(`Error deleting account with ID ${id}`, error);
-    throw error;
+    await axios.put(`${BASE_URL}/accounts/${account.id}`, { ...account, name: '' });
+    // This should be added in the backend
+    await deleteOwnerSavedAccounts(account.id);
+   } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const axiosError: AxiosError = error;
+      if (axiosError.response?.status === 401) {
+        throw new Error(`You are not authorized to delete an account`);
+      } else if (axiosError.response?.status === 403) {
+        throw new Error(`You do not have permission to delete an account`);
+      }
+    }
+    throw new Error(`Oops! Something went wrong please try again later`);
   }
 };
