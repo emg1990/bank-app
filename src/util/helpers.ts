@@ -2,6 +2,13 @@ import { message } from "antd";
 import { ICurrency } from "./types";
 import { ALLOWED_DECIMALS } from "../config";
 
+/**
+ * Retrieves a currency object from an array of currencies based on its code.
+ * @param code - The currency code to search for.
+ * @param currencies - An array of currency objects.
+ * @returns The currency object with the specified code.
+ * @throws If no currency object is found with the specified code.
+ */
 export function getCurrencyByCode(code: string, currencies: ICurrency[]) {
   const selectedCurrency = currencies.find(currency => (currency.code === code));
   if (!selectedCurrency) {
@@ -11,19 +18,46 @@ export function getCurrencyByCode(code: string, currencies: ICurrency[]) {
   return selectedCurrency;
 }
 
+/**
+ * Returns a formatted string representation of a currency based on its code.
+ * @param code - The currency code.
+ * @param currencies - An array of currency objects.
+ * @returns A string representation of the currency in the format: "{name} - {code} - {symbol}".
+ */
 export function getParsedCurrencyByCode(code: string, currencies: ICurrency[]) {
   const currency = getCurrencyByCode(code, currencies);
   return `${currency.name} - ${currency.code} - ${currency.symbol}`;
 }
 
+/**
+ * Converts an amount from one currency to another.
+ * 
+ * @param amount - The amount to be converted.
+ * @param fromCurrency - The currency to convert from.
+ * @param toCurrency - The currency to convert to.
+ * @returns The converted amount.
+ */
 export function getCurrencyConvertedAmount(amount: number, fromCurrency: ICurrency, toCurrency: ICurrency) {
   return amount * toCurrency.rate / fromCurrency.rate;
 }
 
+/**
+ * Rounds a decimal number to the specified number of decimal places.
+ * @param value - The number to round.
+ * @param decimals - The number of decimal places to round to. Defaults to ALLOWED_DECIMALS.
+ * @returns The rounded number.
+ */
 export function roundDecimal(value: number, decimals = ALLOWED_DECIMALS) {
   return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
 }
 
+/**
+ * Converts a given date in milliseconds to a formatted string representation.
+ * The formatted string is based on the current locale and follows the 'en-GB' format.
+ *
+ * @param dateInMs - The date in milliseconds to be converted.
+ * @returns The formatted string representation of the given date in the 'dd/MM/yyyy, HH:mm:ss' format.
+ */
 export function displayDateTime(dateInMs: number): string {
   return new Date(dateInMs).toLocaleString('en-GB');
 }

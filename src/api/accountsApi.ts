@@ -4,6 +4,14 @@ import { BASE_URL, OWNER_ID } from '../config';
 import { addOwnerSavedAccounts, deleteOwnerSavedAccounts, getOwner } from './ownersApi';
 
 // Accounts Endpoints
+/**
+ * Retrieves a list of accounts associated to the owner.
+ * 
+ * @param savedAccounts - An array of account IDs that should be filtered on the server.
+ * @returns A promise that resolves to an array of accounts.
+ * @throws An error if there is an issue with the request or if the owner is not authorized or does not have permission.
+ * @throws An error if an unexpected error occurs.
+ */
 export const getAccounts = async (savedAccounts: string[]): Promise<IAccount[]> => {
   try {
     const response: AxiosResponse<IAccount[]> = await axios.get(`${BASE_URL}/accounts`);
@@ -27,6 +35,12 @@ export const getAccounts = async (savedAccounts: string[]): Promise<IAccount[]> 
   }
 };
 
+/**
+ * Retrieves the accounts associated with the current owner.
+ * @returns A promise that resolves to an array of IAccount objects.
+ * @throws Error if there is an error fetching the accounts or if the owner is not authorized or does not have permission.
+ * @throws Error if an unexpected error occurs.
+ */
 export const getMyAccounts = async (): Promise<IAccount[]> => {
   try {
     const response: AxiosResponse<IAccount[]> = await axios.get(`${BASE_URL}/accounts?ownerId=${OWNER_ID}`);
@@ -47,6 +61,13 @@ export const getMyAccounts = async (): Promise<IAccount[]> => {
   }
 };
 
+/**
+ * Retrieves an account by its ID.
+ * @param id - The ID of the account to retrieve.
+ * @returns A Promise that resolves to the retrieved account.
+ * @throws Error if the account is not found, the user is not authorized, or there is a permission issue.
+ * @throws Error if an unexpected error occurs.
+ */
 export const getAccountById = async (id: string): Promise<IAccount> => {
   try {
     const response: AxiosResponse<IAccount> = await axios.get(`${BASE_URL}/accounts/${id}`);
@@ -67,6 +88,15 @@ export const getAccountById = async (id: string): Promise<IAccount> => {
   }
 };
 
+/**
+ * Retrieves a validated account by its ID, an account is validated if
+ *  1. The account does not belong to the owner.
+ *  2. The account is not already added to the owner's saved accounts.
+ * 
+ * @param id - The ID of the account to retrieve.
+ * @returns A Promise that resolves to the validated account.
+ * @throws An error if the account is already added.
+ */
 export const getValidatedAccount = async (id: string): Promise<IAccount> => {
   const account = await getAccountById(id);
   const owner = await getOwner();
@@ -77,6 +107,14 @@ export const getValidatedAccount = async (id: string): Promise<IAccount> => {
   return account;
 };
 
+/**
+ * Adds an account that already exits in DB which has another owner to the current owner's list.
+ * This should create a relationship between the account and the current owner in a real DB.
+ * @param account - The account object to be added to the list.
+ * @returns A Promise that resolves to the added account.
+ * @throws Error if there is an authorization or permission issue, or if something goes wrong during the creation process.
+ * @throws Error if an unexpected error occurs.
+ */
 export const createAccount = async (account: IAccount): Promise<IAccount> => {
   try {
     const response: AxiosResponse<IAccount> = await axios.put(`${BASE_URL}/accounts/${account.id}`, account);
@@ -98,6 +136,14 @@ export const createAccount = async (account: IAccount): Promise<IAccount> => {
   }
 };
 
+/**
+ * Updates the name/alias of an account.
+ * @param account - The account object to be updated.
+ * @returns A Promise that resolves to the updated account.
+ * @throws An error if the user is not authorized or does not have permission to update the account,
+ * or if an unexpected error occurs.
+ * @throws Error if an unexpected error occurs.
+ */
 export const updateAccount = async (account: IAccount): Promise<IAccount> => {
   try {
     const response: AxiosResponse<IAccount> = await axios.put(`${BASE_URL}/accounts/${account.id}`, account);
@@ -117,6 +163,12 @@ export const updateAccount = async (account: IAccount): Promise<IAccount> => {
   }
 };
 
+/**
+ * Deletes an account from the owner's list.
+ *
+ * @param account - The account to be deleted.
+ * @throws Error - If the user is not authorized or does not have permission to delete the account, or if an error occurs during the deletion process.
+ */
 export const deleteAccount = async (account: IAccount): Promise<void> => {
   try {
     await axios.put(`${BASE_URL}/accounts/${account.id}`, { ...account, name: '' });

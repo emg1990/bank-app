@@ -6,10 +6,15 @@ import { getCurrencyConvertedAmount, roundDecimal } from '../util/helpers';
 import { getCurrencies } from './currenciesApi';
 
 // Transfers Endpoints
+/**
+ * Retrieves a list of transfers from the server.
+ * @returns A promise that resolves to an array of transfer objects.
+ * @throws Error if there is an error fetching the transfers or if the owner is not authorized or does not have permission.
+ */
 export const getTransfers = async (): Promise<ITransfer[]> => {
   try {
     const response: AxiosResponse<ITransfer[]> = await axios.get(`${BASE_URL}/transfers`);
-    // Filtering should be done in BE
+    // Ordering should be done in BE
     return response.data.reverse();
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -27,6 +32,13 @@ export const getTransfers = async (): Promise<ITransfer[]> => {
   }
 };
 
+/**
+ * Creates a new transfer.
+ *
+ * @param transfer - The transfer object containing the details of the transfer.
+ * @returns A Promise that resolves to the created transfer.
+ * @throws An error if the transfer creation fails.
+ */
 export const createTransfer = async (transfer: Omit<ITransfer, "id">): Promise<ITransfer> => {
   try {
     const newTrasfer = { ...transfer, id: new Date().getTime() }; // Generate a unique ID which should be done in BE

@@ -3,6 +3,11 @@ import { ICurrency } from '../util/types';
 import { BASE_URL } from '../config';
 
 // Currencies Endpoints
+/**
+ * Retrieves a list of currencies from the server.
+ * @returns A promise that resolves to an array of ICurrency objects.
+ * @throws Error if there is an error fetching the currencies or if the owner is not authorized or does not have permission.
+ */
 export const getCurrencies = async (): Promise<ICurrency[]> => {
   try {
     const response: AxiosResponse<ICurrency[]> = await axios.get(`${BASE_URL}/currencies`);
