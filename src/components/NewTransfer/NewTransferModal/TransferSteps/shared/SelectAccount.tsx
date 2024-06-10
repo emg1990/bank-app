@@ -2,6 +2,7 @@ import { Button, Card, Collapse, CollapseProps } from 'antd';
 import React, { useState } from 'react';
 import { IAccount } from '../../../../../util/types';
 import StepsFooter from './StepsFooter';
+import { roundDecimal } from '../../../../../util/helpers';
 
 interface SeelectAccountProps {
   accounts?: IAccount[];
@@ -29,7 +30,6 @@ const SeelectAccount: React.FC<SeelectAccountProps> = ({
 
   const onSelect = (accountId: string | string[]) => {
     const selectedAccountId = Array.isArray(accountId) ? accountId[0] : accountId;
-    console.log('accountId', selectedAccountId, accounts.find(account => account.id === selectedAccountId));
     setSelectedAccount(accounts.find(account => account.id === selectedAccountId));
   }
 
@@ -39,20 +39,23 @@ const SeelectAccount: React.FC<SeelectAccountProps> = ({
     }
   }
 
-  const items: CollapseProps['items'] = accounts.map(account => (
+  const items: CollapseProps['items'] = accounts.map(account => {
+    const roundedBalance = roundDecimal(account.balance || 0);
+    
+    return (
     {
       key: account.id,
-      label: `${account.name || account.id} - ${withBalance ? `${account.balance} ${account.currency}` : `${account.currency}`}` ,
+      label: `${account.name || account.id} - ${withBalance ? `${roundedBalance} ${account.currency}` : `${account.currency}`}` ,
       children: <>
         <Card>
           {!!account.name && <p>Name: {account.name}</p>}
           <p>IBAN: {account.id}</p>
           <p>Currency: {account.currency}</p>
-          {withBalance && <p>Balance: {account.balance}</p>}
+          {withBalance && <p>Balance: {roundedBalance}</p>}
         </Card>
       </>,
     }
-  ));
+  )});
 
   console.log('defaultSelected', defaultSelected);
 

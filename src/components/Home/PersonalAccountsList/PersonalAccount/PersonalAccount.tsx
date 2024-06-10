@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from 'antd';
 import { IAccount } from '../../../../util/types';
 import styles from './PersonalAccount.module.css';
+import { roundDecimal } from '../../../../util/helpers';
 
 interface PersonalAccountProps {
   account: IAccount;
@@ -14,7 +15,7 @@ const PersonalAccount: React.FC<PersonalAccountProps> = ({ account }) => {
         <div className={styles.cardContent}>
         <span>{account.name}</span>
         <span>IBAN: {account.id}</span>
-        <span>Balance: {account.balance} {account.currency}</span>
+        <span>Balance: {roundDecimal(account.balance || 0)} {account.currency}</span>
         </div>
       </Card>
     </div>

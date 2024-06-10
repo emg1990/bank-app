@@ -1,6 +1,6 @@
 import { FormInstance, message } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { getAccounts } from '../../../../api/accountsApi';
+import { getAccounts, getMyAccounts } from '../../../../api/accountsApi';
 import { IAccount } from '../../../../util/types';
 import SeelectAccount from './shared/SelectAccount';
 import { useAppContext } from '../../../../contexts/AppContext';
@@ -17,8 +17,9 @@ const Step2SelectDestination: React.FC<Step2SelectDestinationProps> = ({ form, o
   useEffect(() => {
     const fecthAccounts = async () => {
       try {
-        const fetchedAccounts = await getAccounts(owner.savedAccounts);
-        setAccounts(fetchedAccounts);
+        const fetchedAccounts = await Promise.all([getAccounts(owner.savedAccounts), getMyAccounts()]);
+        // Do not allow to transfer to the same account
+        setAccounts(fetchedAccounts.flat().filter(account => account.id !== form.getFieldValue('fromAccount').id));
       } catch (error) {
         message.error((error as Error).message);
       }

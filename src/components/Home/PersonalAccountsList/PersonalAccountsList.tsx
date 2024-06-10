@@ -5,6 +5,7 @@ import PersonalAccount from './PersonalAccount/PersonalAccount';
 import useDimensions from '../../../hooks/useDimensions';
 import styles from './PersonalAccountsList.module.css'
 import { getMyAccounts } from '../../../api/accountsApi';
+import { roundDecimal } from '../../../util/helpers';
 
 const PersonalAccountsList = () => {
   const [accounts, setAccounts] = useState<IAccount[]>([]);
@@ -44,7 +45,7 @@ const PersonalAccountsList = () => {
     <div className={styles.container}>
       <div className={styles.balance}>
         {Object.keys(totalBalance).map(currency => (
-          <span key={currency}>{totalBalance[currency]} <strong>{currency}</strong></span>
+          <span key={currency}>{roundDecimal(totalBalance[currency])} <strong>{currency}</strong></span>
         ))}
       </div>
       <Carousel

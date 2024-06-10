@@ -1,4 +1,4 @@
-import axios, { AxiosError, type AxiosResponse } from 'axios';
+import axios, { type AxiosError, type AxiosResponse } from 'axios';
 import { IAccount } from '../util/types';
 import { BASE_URL, OWNER_ID } from '../config';
 import { addOwnerSavedAccounts, deleteOwnerSavedAccounts } from './ownersApi';
@@ -46,7 +46,7 @@ export const getMyAccounts = async (): Promise<IAccount[]> => {
   }
 };
 
-export const getAccountById = async (id: number): Promise<IAccount> => {
+export const getAccountById = async (id: string): Promise<IAccount> => {
   try {
     const response: AxiosResponse<IAccount> = await axios.get(`${BASE_URL}/accounts/${id}`);
     return response.data;

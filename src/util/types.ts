@@ -8,11 +8,12 @@ export interface IAccount {
 }
 
 export interface ITransfer {
-  transferId: number;
+  id: number;
   fromAccount: string;
   toAccount: string;
   amount: number;
-  date: string;
+  currency: string;
+  date: number;
 }
 
 export interface ICurrency {

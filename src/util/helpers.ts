@@ -16,6 +16,9 @@ export function getParsedCurrencyByCode(code: string, currencies: ICurrency[]) {
 }
 
 export function getCurrencyConvertedAmount(amount: number, fromCurrency: ICurrency, toCurrency: ICurrency) {
-  console.log('amount', amount, 'fromCurrency', fromCurrency, 'toCurrency', toCurrency)
   return amount * toCurrency.rate / fromCurrency.rate;
+}
+
+export function roundDecimal(value: number, decimals = 2) {
+  return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
 }

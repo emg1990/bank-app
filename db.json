@@ -4,7 +4,7 @@
       "id": "GB33BUKB20201555555555",
       "ownerId": 1,
       "currency": "GBP",
-      "balance": 1200,
+      "balance": 565,
       "name": "John's Savings",
       "ownerDisplayName": "John Doe"
     },
@@ -12,7 +12,7 @@
       "id": "GB94BARC10201530093459",
       "ownerId": 1,
       "currency": "USD",
-      "balance": 800,
+      "balance": 1646.666666666667,
       "name": "John's Checking",
       "ownerDisplayName": "John Doe"
     },
@@ -134,7 +134,7 @@
       "code": "USD",
       "name": "United States Dollar",
       "symbol": "$",
-      "rate": 1.00
+      "rate": 1
     },
     {
       "code": "EUR",
@@ -152,7 +152,7 @@
       "code": "JPY",
       "name": "Japanese Yen",
       "symbol": "¥",
-      "rate": 110.00
+      "rate": 110
     },
     {
       "code": "CAD",
@@ -328,6 +328,30 @@
       "amount": 100,
       "date": "2024-06-03T16:00:00Z",
       "id": "c361"
+    },
+    {
+      "id": 1717985187333,
+      "fromAccount": "GB33BUKB20201555555555",
+      "toAccount": "GB94BARC10201530093459",
+      "amount": "505",
+      "date": 1717985187331,
+      "currency": "GBP"
+    },
+    {
+      "id": 1717985189807,
+      "fromAccount": "GB33BUKB20201555555555",
+      "toAccount": "GB94BARC10201530093459",
+      "amount": "505",
+      "date": 1717985189807,
+      "currency": "GBP"
+    },
+    {
+      "id": 1717985511768,
+      "fromAccount": "GB94BARC10201530093459",
+      "toAccount": "GB33BUKB20201555555555",
+      "amount": "500",
+      "date": 1717985511767,
+      "currency": "USD"
     }
   ]
 }
