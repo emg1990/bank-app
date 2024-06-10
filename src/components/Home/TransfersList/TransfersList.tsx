@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { ITransfer } from '../../../util/types';
-import { Card, List } from 'antd';
+import { Card, List, message } from 'antd';
 import { TransactionOutlined } from '@ant-design/icons';
-import { getLastNTransfers } from '../../../api/transfersApi';
+import { getTransfers } from '../../../api/transfersApi';
+import { useAppContext } from '../../../contexts/AppContext';
+import { displayDateTime, getCurrencyByCode } from '../../../util/helpers';
+import styles from './TransfersList.module.css';
+
 const { Item } = List;
+
 const TransfersList = () => {
   const [transfers, setTransfers] = useState<ITransfer[]>([]);
+  const { transfersLastUpdate, currencies } = useAppContext();
 
   useEffect(() => {
-
-    // Mock transfers
+    console.log('fetching transfers', transfersLastUpdate);
     const fetchTransfers = async () => {
       try {
-        const fetchedTransfers = await getLastNTransfers();
+        const fetchedTransfers = await getTransfers();
         setTransfers(fetchedTransfers);
       } catch (error) {
-        console.error('Failed to fetch currencies:', error);
+        message.error((error as Error).message);
       }
     };
     fetchTransfers();
 
-  }, []);
+  }, [transfersLastUpdate]);
+
   return (
-    <Card title="Last 5 Transfers">
+    <Card title="Transfers" className={styles.container}>
       <List
         itemLayout="horizontal"
         dataSource={transfers}
@@ -30,8 +36,8 @@ const TransfersList = () => {
           <Item>
             <Item.Meta
               avatar={<TransactionOutlined />}
-              title={`From Account ${transfer.fromAccount} to Account ${transfer.toAccount}`}
-              description={`Amount: ${transfer.amount} Date: ${transfer.date}`}
+              title={`From ${transfer.fromAccount} to ${transfer.toAccount}`}
+              description={`A transfer of ${transfer.amount}${getCurrencyByCode(transfer.currency, currencies).symbol} was made on ${displayDateTime(transfer.date)}`}
             />
           </Item>
         )}

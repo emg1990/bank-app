@@ -1,14 +1,16 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Carousel } from 'antd';
+import { Carousel, message } from 'antd';
 import { IAccount } from '../../../util/types';
 import PersonalAccount from './PersonalAccount/PersonalAccount';
 import useDimensions from '../../../hooks/useDimensions';
 import styles from './PersonalAccountsList.module.css'
 import { getMyAccounts } from '../../../api/accountsApi';
 import { roundDecimal } from '../../../util/helpers';
+import { useAppContext } from '../../../contexts/AppContext';
 
 const PersonalAccountsList = () => {
   const [accounts, setAccounts] = useState<IAccount[]>([]);
+  const { myAccountsLastUpdate } = useAppContext();
   const { width } = useDimensions();
 
   useEffect(() => {
@@ -17,11 +19,12 @@ const PersonalAccountsList = () => {
         const fetchedAccounts = await getMyAccounts();
         setAccounts(fetchedAccounts);
       } catch (error) {
-        console.error('Failed to fetch currencies:', error);
+        console.warn("Error fetching personal accounts");
+        message.error((error as Error).message);
       }
     };
     fetchMyAccounts();
-  }, []);
+  }, [myAccountsLastUpdate]);
 
   const totalBalance = useMemo(() => {
     const balanceByCurrency: Record<string, number> = {};

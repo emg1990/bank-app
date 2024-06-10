@@ -22,3 +22,7 @@ export function getCurrencyConvertedAmount(amount: number, fromCurrency: ICurren
 export function roundDecimal(value: number, decimals = 2) {
   return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
 }
+
+export function displayDateTime(dateInMs: number): string {
+  return new Date(dateInMs).toLocaleString('en-GB');
+}

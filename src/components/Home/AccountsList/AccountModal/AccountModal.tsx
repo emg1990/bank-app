@@ -26,6 +26,7 @@ const AccountModal: React.FC<AccountModalProps> = ({ open, onCancel, account }) 
       setValidatedAccount(account);
     } catch (error) {
       setValidatedAccount(undefined);
+      console.log("Error validating account", error);
       message.error((error as Error).message);
     } finally {
       setLoading(false);
@@ -50,13 +51,16 @@ const AccountModal: React.FC<AccountModalProps> = ({ open, onCancel, account }) 
       if (account) {
         await updateAccount(updatedAccount);
         updateOwnerSavedAccounts(owner.savedAccounts);
+        message.success("Account updated successfully");
       } else {
         await createAccount(updatedAccount);
         const uniqueAccounts = [...new Set([...owner.savedAccounts, updatedAccount.id])];
         updateOwnerSavedAccounts(uniqueAccounts);
+        message.success("Account created successfully");
       }
       onCancel();
     } catch (error) {
+      console.warn("Error saving account", error);
       message.error((error as Error).message);
     } finally {
       setLoading(false);

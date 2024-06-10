@@ -5,6 +5,7 @@ import AccountRow from './AccountRow/AccountRow';
 import { getAccounts, getMyAccounts } from '../../../api/accountsApi';
 import { useAppContext } from '../../../contexts/AppContext';
 import AddAccountModal from './AccountModal/AccountModal';
+import styles from './AccountsList.module.css';
 
 const AccountsList = () => {
   const [accounts, setAccounts] = useState<IAccount[]>([]);
@@ -15,10 +16,10 @@ const AccountsList = () => {
   useEffect(() => {
     const fetchLinkedAccounts = async () => {
       try {
-        // TODO store list of accounts in appContext
         const fetchedAccounts = await Promise.all([getMyAccounts(), getAccounts(owner.savedAccounts)]);
         setAccounts(fetchedAccounts.flat());
       } catch (error) {
+        console.warn("Error fetching accounts");
         message.error((error as Error).message);
       }
     };
@@ -40,7 +41,11 @@ const AccountsList = () => {
   };
 
   return (
-    <Card title="Accounts" extra={<Button shape="round" onClick={onAddAccount}>Add</Button>}>
+    <Card
+      title="Accounts"
+      extra={<Button shape="round" onClick={onAddAccount}>Add</Button>}
+      className={styles.container}
+    >
       <List
         itemLayout="horizontal"
         dataSource={accounts}

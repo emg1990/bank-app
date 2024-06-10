@@ -9,29 +9,21 @@ import { getCurrencies } from './currenciesApi';
 export const getTransfers = async (): Promise<ITransfer[]> => {
   try {
     const response: AxiosResponse<ITransfer[]> = await axios.get(`${BASE_URL}/transfers`);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching transfers", error);
-    throw error;
-  }
-};
-
-export const getLastNTransfers = async (limit = 5): Promise<ITransfer[]> => {
-  try {
-    const response: AxiosResponse<ITransfer[]> = await axios.get(`${BASE_URL}/transfers?_limit=${limit}`);
-    return response.data;
+    // Filtering should be done in BE
+    return response.data.reverse();
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError: AxiosError = error;
       if (axiosError.response?.status === 404) {
         return [];
       } else if (axiosError.response?.status === 401) {
-        throw new Error(`You are not authorized to fetch transfers`);
+        // Should redirect to login page
+        throw new Error("You are not authorized to fetch transfers");
       } else if (axiosError.response?.status === 403) {
-        throw new Error(`You do not have permission to fetch transfers`);
+        throw new Error("You do not have permission to fetch transfers");
       }
     }
-    throw new Error(`Oops! Something went wrong please try again later`);
+    throw new Error("Oops! Something went wrong please try again later");
   }
 };
 
@@ -66,6 +58,7 @@ export const createTransfer = async (transfer: Omit<ITransfer, "id">): Promise<I
     if (axios.isAxiosError(error)) {
       const axiosError: AxiosError = error;
       if (axiosError.response?.status === 401) {
+        // Should redirect to login page
         throw new Error(`You are not authorized to create transfers`);
       } else if (axiosError.response?.status === 403) {
         throw new Error(`You do not have permission to create transfers`);

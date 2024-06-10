@@ -4,7 +4,7 @@
       "id": "GB33BUKB20201555555555",
       "ownerId": 1,
       "currency": "GBP",
-      "balance": 565,
+      "balance": 410.3,
       "name": "John's Savings",
       "ownerDisplayName": "John Doe"
     },
@@ -12,7 +12,7 @@
       "id": "GB94BARC10201530093459",
       "ownerId": 1,
       "currency": "USD",
-      "balance": 1646.666666666667,
+      "balance": 1499.996666666667,
       "name": "John's Checking",
       "ownerDisplayName": "John Doe"
     },
@@ -20,7 +20,7 @@
       "id": "DE75512108001245126199",
       "ownerId": 1,
       "currency": "EUR",
-      "balance": 700,
+      "balance": 999.9961666666666,
       "name": "John's Europe",
       "ownerDisplayName": "John Doe"
     },
@@ -306,30 +306,6 @@
   ],
   "transfers": [
     {
-      "transferId": "1",
-      "fromAccount": "GB33BUKB20201555555555",
-      "toAccount": "NL91ABNA0417164300",
-      "amount": 500,
-      "date": "2024-06-01T12:00:00Z",
-      "id": "1a45"
-    },
-    {
-      "transferId": "2",
-      "fromAccount": "BE68539007547034",
-      "toAccount": "IT60X0542811101000000123456",
-      "amount": 250,
-      "date": "2024-06-02T14:30:00Z",
-      "id": "ca6b"
-    },
-    {
-      "transferId": "3",
-      "fromAccount": "DE75512108001245126199",
-      "toAccount": "FI1410093000123458",
-      "amount": 100,
-      "date": "2024-06-03T16:00:00Z",
-      "id": "c361"
-    },
-    {
       "id": 1717985187333,
       "fromAccount": "GB33BUKB20201555555555",
       "toAccount": "GB94BARC10201530093459",
@@ -352,6 +328,38 @@
       "amount": "500",
       "date": 1717985511767,
       "currency": "USD"
+    },
+    {
+      "id": 1718041968232,
+      "fromAccount": "GB94BARC10201530093459",
+      "toAccount": "DE75512108001245126199",
+      "amount": "146.67",
+      "date": 1718041968232,
+      "currency": "USD"
+    },
+    {
+      "id": 1718042871663,
+      "fromAccount": "DE75512108001245126199",
+      "toAccount": "GB33BUKB20201555555555",
+      "amount": "24.67",
+      "date": 1718042871662,
+      "currency": "EUR"
+    },
+    {
+      "id": 1718043212675,
+      "fromAccount": "GB33BUKB20201555555555",
+      "toAccount": "DE75512108001245126199",
+      "amount": "500",
+      "date": 1718043212675,
+      "currency": "GBP"
+    },
+    {
+      "id": 1718043339340,
+      "fromAccount": "DE75512108001245126199",
+      "toAccount": "GB33BUKB20201555555555",
+      "amount": "366.67",
+      "date": 1718043339340,
+      "currency": "EUR"
     }
   ]
 }
