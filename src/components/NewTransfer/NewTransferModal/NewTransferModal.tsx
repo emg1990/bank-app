@@ -1,5 +1,5 @@
-import { Form, Input, Modal, StepProps, Steps } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { Form, Modal, StepProps, Steps } from 'antd';
+import React, { useState } from 'react';
 import styles from './NewTransferModal.module.css';
 import Step1SelectSource from './TransferSteps/Step1SelectSource';
 import Step2SelectDestination from './TransferSteps/Step2SelectDestination';
@@ -17,7 +17,6 @@ const NewTransferModal: React.FC<NewTransferModalProps> = ({ open, onCancel }) =
   const [form] = Form.useForm();
 
   const makeTransfer = () => {
-    // do something
     const fromAccount = form.getFieldValue('fromAccount').id;
     const toAccount = form.getFieldValue('toAccount').id;
     const amount = form.getFieldValue('amount');

@@ -1,4 +1,4 @@
-import { Card, Typography, DescriptionsProps, FormInstance, Form, Space } from 'antd';
+import { Card, Typography, FormInstance, Space } from 'antd';
 import React from 'react';
 import StepsFooter from './shared/StepsFooter';
 
