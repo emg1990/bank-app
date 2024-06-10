@@ -1,5 +1,6 @@
 import { message } from "antd";
 import { ICurrency } from "./types";
+import { ALLOWED_DECIMALS } from "../config";
 
 export function getCurrencyByCode(code: string, currencies: ICurrency[]) {
   const selectedCurrency = currencies.find(currency => (currency.code === code));
@@ -19,7 +20,7 @@ export function getCurrencyConvertedAmount(amount: number, fromCurrency: ICurren
   return amount * toCurrency.rate / fromCurrency.rate;
 }
 
-export function roundDecimal(value: number, decimals = 2) {
+export function roundDecimal(value: number, decimals = ALLOWED_DECIMALS) {
   return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
 }
 

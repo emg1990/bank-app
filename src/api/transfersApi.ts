@@ -2,7 +2,7 @@ import axios, { type AxiosError, type AxiosResponse } from 'axios';
 import { ICurrency, ITransfer } from '../util/types';
 import { BASE_URL } from '../config';
 import { getAccountById, updateAccount } from './accountsApi';
-import { getCurrencyConvertedAmount } from '../util/helpers';
+import { getCurrencyConvertedAmount, roundDecimal } from '../util/helpers';
 import { getCurrencies } from './currenciesApi';
 
 // Transfers Endpoints
@@ -41,8 +41,8 @@ export const createTransfer = async (transfer: Omit<ITransfer, "id">): Promise<I
       currencies.find((currency) => currency.code === fromAccount.currency) as ICurrency,
       currencies.find((currency) => currency.code === toAccount.currency) as ICurrency
     );
-    await updateAccount({ ...fromAccount, balance: fromAccount.balance as number - transfer.amount });
-    await updateAccount({ ...toAccount, balance: (toAccount.balance || 0) + toAccountBalance });
+    await updateAccount({ ...fromAccount, balance: roundDecimal(fromAccount.balance as number - transfer.amount) });
+    await updateAccount({ ...toAccount, balance: roundDecimal((toAccount.balance || 0) + toAccountBalance) });
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

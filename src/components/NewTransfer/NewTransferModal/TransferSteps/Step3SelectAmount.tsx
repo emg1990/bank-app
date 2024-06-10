@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Card, Form, FormInstance, Input, Space, Typography } from 'antd';
+import { Card, Form, FormInstance, InputNumber, Space, Typography } from 'antd';
 import StepsFooter from './shared/StepsFooter';
 import { getCurrencyByCode, getCurrencyConvertedAmount, roundDecimal } from '../../../../util/helpers';
 import { useAppContext } from '../../../../contexts/AppContext';
+import { ALLOWED_DECIMALS } from '../../../../config';
 
 const { Text } = Typography;
 
@@ -14,6 +15,7 @@ interface Step3SelectAmountProps {
 
 const Step3SelectAmount: React.FC<Step3SelectAmountProps> = ({ form, onOk, onBack }) => {
   const balance = form.getFieldValue('fromAccount').balance;
+  console.log(balance, form.getFieldValue('amount'), form.getFieldValue('fromAccount'));
   const initialAmount = form.getFieldValue('amount') || 0;
   const [amount, setAmount] = useState<number>(initialAmount);
   const [disabled, setDisabled] = useState<boolean>(!initialAmount);
@@ -22,11 +24,11 @@ const Step3SelectAmount: React.FC<Step3SelectAmountProps> = ({ form, onOk, onBac
   const fromCurrency = getCurrencyByCode(form.getFieldValue('fromAccount').currency, currencies);
   const toCurrency = getCurrencyByCode(form.getFieldValue('toAccount').currency, currencies);
 
-  const onValuesChange: React.ChangeEventHandler<HTMLInputElement> = async (e) => {
+  const onValuesChange: ((value: number | null) => void) = async (value) => {
     try {
       await form.validateFields();
-      setAmount(Number.parseFloat(e.target.value));
-      setCurrentBalance(balance - Number.parseFloat(e.target.value));
+      setAmount(value || 0);
+      setCurrentBalance(balance - (value || 0));
       setDisabled(false);
     } catch {
       setCurrentBalance(balance);
@@ -45,14 +47,21 @@ const Step3SelectAmount: React.FC<Step3SelectAmountProps> = ({ form, onOk, onBac
             if (value && value <= 0) {
               return Promise.reject(new Error('The amount must be greater than 0.'));
             }
-            if (value && value > balance) {
+            const tolerance = 0.0001; // Define a tolerance value to avoid floating point errors
+            if (value && value > tolerance + balance) {
               return Promise.reject(new Error('The amount exceeds the current balance!'));
             }
             return Promise.resolve();
           },
         }),
       ]}>
-        <Input size="large" prefix={fromCurrency.symbol} type="number" onChange={onValuesChange} />
+        <InputNumber
+          size="large"
+          prefix={fromCurrency.symbol}
+          type="number"
+          precision={ALLOWED_DECIMALS}
+          onChange={onValuesChange}
+        />
       </Form.Item>
       <Space direction="vertical">
         <Text strong>Balance: <Text type='warning'>{roundDecimal(currentBalance)}{fromCurrency.symbol}</Text></Text>

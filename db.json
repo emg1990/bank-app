@@ -12,7 +12,7 @@
       "id": "GB94BARC10201530093459",
       "ownerId": 1,
       "currency": "USD",
-      "balance": 999.9966666666669,
+      "balance": 1000,
       "name": "John's Checking",
       "ownerDisplayName": "John Doe"
     },
@@ -20,7 +20,7 @@
       "id": "DE75512108001245126199",
       "ownerId": 1,
       "currency": "EUR",
-      "balance": 1424.9961666666666,
+      "balance": 1500,
       "name": "John's Europe",
       "ownerDisplayName": "John Doe"
     },
