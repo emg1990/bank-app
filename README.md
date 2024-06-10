@@ -1,46 +1,123 @@
-# Getting Started with Create React App
+# Bank App Documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+1. [Introduction](#introduction)
+2. [Features](#features)
+   - [Transfers](#transfers)
+   - [Account Management](#account-management)
+   - [View Accounts](#view-accounts)
+   - [Currency Conversion](#currency-conversion)
+   - [Balance Overview](#balance-overview)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Changelog](#changelog)
+6. [License](#license)
 
-In the project directory, you can run:
+## Introduction
 
-### `npm start`
+This Bank App allows users to manage their bank accounts, make transfers between accounts, view balances, and handle multiple currencies with conversions. This document provides an extensive guide to using the app, including its features, installation instructions and usage.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Transfers
 
-### `npm test`
+- **Make Transfers**: Transfer funds between accounts in your list.
+- **Validations**: Ensure all necessary validations are in place, such as sufficient balance and account existence.
+- **Currency Conversion**: Transfer between different currencies with real-time conversion rates.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Account Management
 
-### `npm run build`
+- **Add Accounts**: Add new accounts to your owner's account list.
+- **Edit Accounts**: Edit details of existing accounts in owner's list.
+- **Delete Accounts**: Remove accounts from owner's list.
+- **Account Existence Check**: Can only add accounts if they exist in the bank (DB) and belong to another owner.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### View Accounts
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **List Accounts**: View a list of all your accounts and accounts on your list.
+- **Account Details**: View detailed information of each account, including balance and currency.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Currency Conversion
 
-### `npm run eject`
+- **Real-Time Conversion**: Convert amounts between different currencies.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Balance Overview
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **View Balances**: Check the balance of each account.
+- **Total Balance**: View the total balance per currency.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Other Features
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **Error Handling**: Comprehensive error handling for all operations.
+- **Validation Rules**: Ensure all input fields meet the required validation criteria.
 
-## Learn More
+## Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  To set up the Bank App, follow these steps:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  - **Clone the repository**: 
+      ```
+      git clone https://github.com/emg1990/bank-app.git
+      ```
+
+  - **Navigate to the project directory**:
+      ```
+      cd bank-app
+      ```
+
+  - **Install dependencies**:
+      ```
+      npm install
+      ```
+
+  - **Start the development api**:
+      ```
+      npm start-api
+      ```
+
+  - **Start the development app**:
+      ```
+      npm start
+      ```
+
+  - **Open your browser**:
+      - After starting the server, open your web browser and go to [http://localhost:3000](http://localhost:3000) to access the Bank App.
+
+## Usage
+
+  Once the Bank App is installed and running, follow these steps to use it:
+
+  - **Navigate to the Bank App URL**: 
+      - Open your web browser and go to [http://localhost:3000](http://localhost:3000) to access the Bank App.
+
+  - **View Your Accounts**:
+      - Upon accessing the web page, you'll be able to view your list of accounts, on the top you'll find the ownr's accounts and on the bottom you'll find the accounts saved by the owner.
+
+  - **Perform Transactions**:
+      - On the bottom right you'll find a button which will open a modal to create a new transaction.
+      - Transfer funds between your accounts.
+      - Transfer funds to other accounts.
+
+  - **Manage Your Accounts**:
+      - Add new accounts to your list, the account must exist on the DB.
+        - On the far right of the Accounts header you'll find a button which will open the Add modal.
+      - Edit existing accounts.
+        - On the right of each account from the list you'll find a notepad icon which will open the Edit modal.
+      - Delete accounts as needed.
+        - On the right of each account from the list you'll find a red trash icon which will pop a confirmation modal.
+
+  - **View Account Balances**:
+      - Check the balances of your accounts.
+      - View total balance per currency.
+
+  Enjoy using the Bank App for managing your finances seamlessly!
+
+## Changelog
+
+### v1.0.0
+Initial release with transfer, account management, view accounts, and balance features.
+
+## License
+
+The Bank App is licensed under the [MIT License](LICENSE).
