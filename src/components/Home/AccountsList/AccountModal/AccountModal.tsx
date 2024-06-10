@@ -3,7 +3,7 @@ import { Form, Input, Modal, message } from 'antd';
 import { IAccount } from '../../../../util/types';
 import { useAppContext } from '../../../../contexts/AppContext';
 import { getParsedCurrencyByCode } from '../../../../util/helpers';
-import { getAccountById, createAccount, updateAccount } from '../../../../api/accountsApi';
+import { getValidatedAccount, createAccount, updateAccount } from '../../../../api/accountsApi';
 
 interface AccountModalProps {
   open: boolean;
@@ -22,11 +22,10 @@ const AccountModal: React.FC<AccountModalProps> = ({ open, onCancel, account }) 
     // Add logic to validate the account information
     try {
       setLoading(true);
-      const account = await getAccountById(form.getFieldValue("id"));
+      const account = await getValidatedAccount(form.getFieldValue("id"));
       setValidatedAccount(account);
     } catch (error) {
       setValidatedAccount(undefined);
-      console.log("Error validating account", error);
       message.error((error as Error).message);
     } finally {
       setLoading(false);
@@ -60,7 +59,6 @@ const AccountModal: React.FC<AccountModalProps> = ({ open, onCancel, account }) 
       }
       onCancel();
     } catch (error) {
-      console.warn("Error saving account", error);
       message.error((error as Error).message);
     } finally {
       setLoading(false);

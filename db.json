@@ -12,7 +12,7 @@
       "id": "GB94BARC10201530093459",
       "ownerId": 1,
       "currency": "USD",
-      "balance": 1499.996666666667,
+      "balance": 999.9966666666669,
       "name": "John's Checking",
       "ownerDisplayName": "John Doe"
     },
@@ -20,7 +20,7 @@
       "id": "DE75512108001245126199",
       "ownerId": 1,
       "currency": "EUR",
-      "balance": 999.9961666666666,
+      "balance": 1424.9961666666666,
       "name": "John's Europe",
       "ownerDisplayName": "John Doe"
     },
@@ -72,7 +72,8 @@
       "id": "NL91ABNA0417164300",
       "ownerId": 6,
       "currency": "USD",
-      "ownerDisplayName": "David Miller"
+      "ownerDisplayName": "David Miller",
+      "name": "Account 1"
     },
     {
       "id": "NL27SNSB0917829871",
@@ -173,8 +174,8 @@
       "preferredCurrency": "USD",
       "savedAccounts": [
         "DE89370400440532013000",
-        "DE75512108001245126199",
-        "FR1420041010050500013M02606"
+        "FR1420041010050500013M02606",
+        "NL91ABNA0417164300"
       ]
     },
     {
@@ -360,6 +361,14 @@
       "amount": "366.67",
       "date": 1718043339340,
       "currency": "EUR"
+    },
+    {
+      "id": 1718046078814,
+      "fromAccount": "GB94BARC10201530093459",
+      "toAccount": "DE75512108001245126199",
+      "amount": "500",
+      "date": 1718046078813,
+      "currency": "USD"
     }
   ]
 }

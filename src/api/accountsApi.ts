@@ -1,7 +1,7 @@
 import axios, { type AxiosError, type AxiosResponse } from 'axios';
 import { IAccount } from '../util/types';
 import { BASE_URL, OWNER_ID } from '../config';
-import { addOwnerSavedAccounts, deleteOwnerSavedAccounts } from './ownersApi';
+import { addOwnerSavedAccounts, deleteOwnerSavedAccounts, getOwner } from './ownersApi';
 
 // Accounts Endpoints
 export const getAccounts = async (savedAccounts: string[]): Promise<IAccount[]> => {
@@ -23,7 +23,6 @@ export const getAccounts = async (savedAccounts: string[]): Promise<IAccount[]> 
         throw new Error("You do not have permission to fetch accounts");
       }
     }
-    console.error("Error fetching accounts", error);
     throw new Error("Oops! Something went wrong please try again later");
   }
 };
@@ -56,7 +55,7 @@ export const getAccountById = async (id: string): Promise<IAccount> => {
     if (axios.isAxiosError(error)) {
       const axiosError: AxiosError = error;
       if (axiosError.response?.status === 404) {
-        throw new Error(`Account with ID ${id} not found`);
+        throw new Error(`Account with ID ${id} was not found`);
       } else if (axiosError.response?.status === 401) {
         // Should redirect to login page
         throw new Error("You are not authorized to access this account");
@@ -66,6 +65,16 @@ export const getAccountById = async (id: string): Promise<IAccount> => {
     }
     throw new Error("Oops! Something went wrong please try again later");
   }
+};
+
+export const getValidatedAccount = async (id: string): Promise<IAccount> => {
+  const account = await getAccountById(id);
+  const owner = await getOwner();
+  // This validation should be added in the backend
+  if (account.ownerId === OWNER_ID || owner.savedAccounts.includes(account.id)) {
+    throw new Error("This account was already added.");
+  }
+  return account;
 };
 
 export const createAccount = async (account: IAccount): Promise<IAccount> => {

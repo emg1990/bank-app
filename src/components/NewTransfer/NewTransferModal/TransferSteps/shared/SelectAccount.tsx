@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { IAccount } from '../../../../../util/types';
 import StepsFooter from './StepsFooter';
 import { roundDecimal } from '../../../../../util/helpers';
+import { UserOutlined } from '@ant-design/icons';
 
 interface SeelectAccountProps {
   accounts?: IAccount[];
@@ -45,7 +46,7 @@ const SeelectAccount: React.FC<SeelectAccountProps> = ({
     return (
     {
       key: account.id,
-      label: `${account.name || account.id} - ${withBalance ? `${roundedBalance} ${account.currency}` : `${account.currency}`}` ,
+      label: <><UserOutlined /> {account.name || account.id} - {withBalance ? `${roundedBalance} ${account.currency}` : `${account.currency}`}</> ,
       children: <>
         <Card>
           {!!account.name && <p>Name: {account.name}</p>}
@@ -56,8 +57,6 @@ const SeelectAccount: React.FC<SeelectAccountProps> = ({
       </>,
     }
   )});
-
-  console.log('defaultSelected', defaultSelected);
 
   return (
     <div>

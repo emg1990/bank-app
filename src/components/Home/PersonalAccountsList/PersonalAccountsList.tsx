@@ -19,7 +19,6 @@ const PersonalAccountsList = () => {
         const fetchedAccounts = await getMyAccounts();
         setAccounts(fetchedAccounts);
       } catch (error) {
-        console.warn("Error fetching personal accounts");
         message.error((error as Error).message);
       }
     };

@@ -19,7 +19,6 @@ const AccountsList = () => {
         const fetchedAccounts = await Promise.all([getMyAccounts(), getAccounts(owner.savedAccounts)]);
         setAccounts(fetchedAccounts.flat());
       } catch (error) {
-        console.warn("Error fetching accounts");
         message.error((error as Error).message);
       }
     };

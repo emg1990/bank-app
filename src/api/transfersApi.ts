@@ -27,16 +27,6 @@ export const getTransfers = async (): Promise<ITransfer[]> => {
   }
 };
 
-export const getTransferById = async (id: number): Promise<ITransfer> => {
-  try {
-    const response: AxiosResponse<ITransfer> = await axios.get(`${BASE_URL}/transfers/${id}`);
-    return response.data;
-  } catch (error) {
-    console.error(`Error fetching transfer with ID ${id}`, error);
-    throw error;
-  }
-};
-
 export const createTransfer = async (transfer: Omit<ITransfer, "id">): Promise<ITransfer> => {
   try {
     const newTrasfer = { ...transfer, id: new Date().getTime() }; // Generate a unique ID which should be done in BE

@@ -32,8 +32,6 @@ export const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => 
         const currencies = await getCurrencies();
         setCurrencies(currencies);
       } catch (error) {
-        console.warn("Error fetching currencies", error);
-        // TODO retry if some type of managable error
         message.error((error as Error).message);
       }
     };
@@ -42,8 +40,6 @@ export const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => 
         const owner = await getOwner();
         setOwner(owner);
       } catch (error) {
-        console.warn("Error fetching owner", error);
-        // TODO retry if some type of managable error
         message.error((error as Error).message);
       }
     };

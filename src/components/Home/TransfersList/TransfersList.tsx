@@ -14,7 +14,6 @@ const TransfersList = () => {
   const { transfersLastUpdate, currencies } = useAppContext();
 
   useEffect(() => {
-    console.log('fetching transfers', transfersLastUpdate);
     const fetchTransfers = async () => {
       try {
         const fetchedTransfers = await getTransfers();
@@ -36,8 +35,8 @@ const TransfersList = () => {
           <Item>
             <Item.Meta
               avatar={<TransactionOutlined />}
-              title={`From ${transfer.fromAccount} to ${transfer.toAccount}`}
-              description={`A transfer of ${transfer.amount}${getCurrencyByCode(transfer.currency, currencies).symbol} was made on ${displayDateTime(transfer.date)}`}
+              title={`A transfer of ${transfer.amount}${getCurrencyByCode(transfer.currency, currencies).symbol} was made on ${displayDateTime(transfer.date)}`}
+              description={`From ${transfer.fromAccount} to ${transfer.toAccount}`}
             />
           </Item>
         )}
