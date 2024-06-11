@@ -11,8 +11,9 @@
    - [Balance Overview](#balance-overview)
 3. [Installation](#installation)
 4. [Usage](#usage)
-5. [Changelog](#changelog)
-6. [License](#license)
+5. [Mocked Account IDs](#mocked-account-ids)
+6. [Changelog](#changelog)
+7. [License](#license)
 
 ## Introduction
 
@@ -93,6 +94,7 @@ This Bank App allows users to manage their bank accounts, make transfers between
 
   - **View Your Accounts**:
       - Upon accessing the web page, you'll be able to view your list of accounts, on the top you'll find the ownr's accounts and on the bottom you'll find the accounts saved by the owner.
+      - You can also search the accounts using the search button on the account's list header
 
   - **Perform Transactions**:
       - On the bottom right you'll find a button which will open a modal to create a new transaction.
@@ -100,7 +102,7 @@ This Bank App allows users to manage their bank accounts, make transfers between
       - Transfer funds to other accounts.
 
   - **Manage Your Accounts**:
-      - Add new accounts to your list, the account must exist on the DB.
+      - Add new accounts to your list, the account must exist on the DB (view [Mocked Account IDs](#mocked-account-ids) for examples).
         - On the far right of the Accounts header you'll find a button which will open the Add modal.
       - Edit existing accounts.
         - On the right of each account from the list you'll find a notepad icon which will open the Edit modal.
@@ -112,6 +114,29 @@ This Bank App allows users to manage their bank accounts, make transfers between
       - View total balance per currency.
 
   Enjoy using the Bank App for managing your finances seamlessly!
+
+### Mocked Account IDs
+- **List of Mocked Account IDs** Add one of the following accounts:
+    - GB33BUKB20201555555555
+    - GB94BARC10201530093459
+    - DE75512108001245126199
+    - IT60X0542811101000000123456
+    - DE89370400440532013000
+    - FR7630006000011234567890189
+    - FR1420041010050500013M02606
+    - ES9121000418450200051332
+    - ES4321000418401234567891
+    - IT40X0542811101000000123457
+    - NL91ABNA0417164300
+    - NL27SNSB0917829871
+    - BE68539007547034
+    - BE62510007547061
+    - DK5000400440116243
+    - DK9550400123456238
+    - FI2112345600000785
+    - FI1410093000123458
+    - NO9386011117947
+    - NO9386011117948
 
 ## Changelog
 

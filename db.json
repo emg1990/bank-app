@@ -4,7 +4,7 @@
       "id": "GB33BUKB20201555555555",
       "ownerId": 1,
       "currency": "GBP",
-      "balance": 410.3,
+      "balance": 400,
       "name": "John's Savings",
       "ownerDisplayName": "John Doe"
     },
@@ -28,7 +28,7 @@
       "id": "IT60X0542811101000000123456",
       "ownerId": 1,
       "currency": "EUR",
-      "balance": 3000,
+      "balance": 3500,
       "name": "John's International",
       "ownerDisplayName": "John Doe"
     },
@@ -375,6 +375,14 @@
       "amount": "500",
       "date": 1718046078813,
       "currency": "USD"
+    },
+    {
+      "id": "1718147717658",
+      "fromAccount": "GB33BUKB20201555555555",
+      "toAccount": "IT60X0542811101000000123456",
+      "amount": 10.3,
+      "currency": "GBP",
+      "date": 1718147717638
     }
   ]
 }
