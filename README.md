@@ -73,12 +73,12 @@ This Bank App allows users to manage their bank accounts, make transfers between
 
   - **Start the development api**:
       ```
-      npm start-api
+      npm run start-api
       ```
 
   - **Start the development app**:
       ```
-      npm start
+      npm run start
       ```
 
   - **Open your browser**:

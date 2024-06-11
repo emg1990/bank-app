@@ -47,8 +47,7 @@ const Step3SelectAmount: React.FC<Step3SelectAmountProps> = ({ form, onOk, onBac
             if (value && value <= 0) { // This rule ensures that the amount is greater than 0
               return Promise.reject(new Error('The amount must be greater than 0.'));
             }
-            const tolerance = 0.0001; // Define a tolerance value to avoid floating point errors
-            if (value && value > tolerance + balance) { // This rule ensures that the amount is less than the balance
+            if (value && value > balance) { // This rule ensures that the amount is less than the balance
               return Promise.reject(new Error('The amount exceeds the current balance!'));
             }
             return Promise.resolve();
