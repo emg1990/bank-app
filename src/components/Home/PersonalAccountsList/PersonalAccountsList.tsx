@@ -5,7 +5,7 @@ import PersonalAccount from './PersonalAccount/PersonalAccount';
 import useDimensions from '../../../hooks/useDimensions';
 import styles from './PersonalAccountsList.module.css'
 import { getMyAccounts } from '../../../api/accountsApi';
-import { roundDecimal } from '../../../util/helpers';
+import { getBalanceByCurrency, roundDecimal } from '../../../util/helpers';
 import { useAppContext } from '../../../contexts/AppContext';
 
 const PersonalAccountsList = () => {
@@ -26,15 +26,7 @@ const PersonalAccountsList = () => {
   }, [myAccountsLastUpdate]);
 
   const totalBalance = useMemo(() => {
-    const balanceByCurrency: Record<string, number> = {};
-    accounts.forEach(account => {
-      if (balanceByCurrency[account.currency]) {
-        balanceByCurrency[account.currency] += (account.balance || 0);
-      } else {
-        balanceByCurrency[account.currency] = (account.balance || 0);
-      }
-    });
-    return balanceByCurrency;
+    return getBalanceByCurrency(accounts);
   }, [accounts]);
   /**
    * The number of cards to show based on the width of the container.

@@ -1,4 +1,5 @@
-import { getCurrencyByCode, getParsedCurrencyByCode, getCurrencyConvertedAmount, roundDecimal, displayDateTime } from "./helpers";
+import { getCurrencyByCode, getParsedCurrencyByCode, getCurrencyConvertedAmount, getBalanceByCurrency, roundDecimal, displayDateTime } from "./helpers";
+import { IAccount } from "./types";
 
 describe("getCurrencyByCode", () => {
   const currencies = [
@@ -86,6 +87,45 @@ describe("getCurrencyConvertedAmount", () => {
     expect(result).toBe(100);
   });
 });
+
+describe("getBalanceByCurrency", () => {
+  const accounts: IAccount[] = [
+    { id: "1", currency: "USD", balance: 100, ownerId: 1, ownerDisplayName: "Owner 1"},
+    { id: "2", currency: "EUR", balance: 200, ownerId: 1, ownerDisplayName: "Owner 1" },
+    { id: "3", currency: "GBP", balance: 300, ownerId: 1, ownerDisplayName: "Owner 1" },
+    { id: "4", currency: "USD", balance: 400, ownerId: 1, ownerDisplayName: "Owner 1" },
+    { id: "5", currency: "EUR", balance: 500, ownerId: 1, ownerDisplayName: "Owner 1" },
+  ];
+
+  it("should calculate the balance by currency correctly", () => {
+    const result = getBalanceByCurrency(accounts);
+    expect(result).toEqual({
+      USD: 500,
+      EUR: 700,
+      GBP: 300,
+    });
+  });
+
+  it("should handle accounts with zero balance", () => {
+    const accountsWithZeroBalance = [
+      ...accounts,
+      { id: "6", currency: "USD", balance: 0, ownerId: 1, ownerDisplayName: "Owner 1" },
+      { id: "7", currency: "EUR", balance: 0, ownerId: 1, ownerDisplayName: "Owner 1" },
+    ];
+    const result = getBalanceByCurrency(accountsWithZeroBalance);
+    expect(result).toEqual({
+      USD: 500,
+      EUR: 700,
+      GBP: 300,
+    });
+  });
+
+  it("should handle empty accounts array", () => {
+    const result = getBalanceByCurrency([]);
+    expect(result).toEqual({});
+  });
+});
+
 
 describe("roundDecimal", () => {
   it("should round a decimal number to the specified number of decimal places", () => {

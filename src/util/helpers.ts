@@ -1,5 +1,5 @@
 import { message } from "antd";
-import { ICurrency } from "./types";
+import { IAccount, ICurrency } from "./types";
 import { ALLOWED_DECIMALS } from "../config";
 
 /**
@@ -39,6 +39,23 @@ export function getParsedCurrencyByCode(code: string, currencies: ICurrency[]) {
  */
 export function getCurrencyConvertedAmount(amount: number, fromCurrency: ICurrency, toCurrency: ICurrency) {
   return amount * toCurrency.rate / fromCurrency.rate;
+}
+
+/**
+ * Calculates the balance by currency for a given array of accounts.
+ * @param accounts - An array of accounts.
+ * @returns An object representing the balance by currency, where the currency is the key and the balance is the value.
+ */
+export function getBalanceByCurrency(accounts: IAccount[]) {
+  const balanceByCurrency: Record<string, number> = {};
+  accounts.forEach(account => {
+    if (balanceByCurrency[account.currency]) {
+      balanceByCurrency[account.currency] += (account.balance || 0);
+    } else {
+      balanceByCurrency[account.currency] = (account.balance || 0);
+    }
+  });
+  return balanceByCurrency;
 }
 
 /**
