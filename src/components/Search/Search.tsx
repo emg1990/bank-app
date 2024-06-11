@@ -23,13 +23,14 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
           onChange={e => onSearch(e.target.value)}
           onBlur={onCloseSearch}
           autoFocus
-          suffix={<CloseOutlined onClick={onCloseSearch}/>}
+          suffix={<CloseOutlined onClick={onCloseSearch} data-testid="close-icon"/>}
+          data-testid="search-input"
         />
       </div>
     );
   }
   return (
-    <SearchOutlined onClick={() => setIsExpanded(true)}/>
+    <SearchOutlined onClick={() => setIsExpanded(true)} data-testid="search-icon"/>
   );
 };
 
