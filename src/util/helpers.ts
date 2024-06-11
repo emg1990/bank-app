@@ -1,6 +1,7 @@
 import { message } from "antd";
 import { IAccount, ICurrency } from "./types";
 import { ALLOWED_DECIMALS } from "../config";
+import BigNumber from "bignumber.js";
 
 /**
  * Retrieves a currency object from an array of currencies based on its code.
@@ -38,7 +39,11 @@ export function getParsedCurrencyByCode(code: string, currencies: ICurrency[]) {
  * @returns The converted amount.
  */
 export function getCurrencyConvertedAmount(amount: number, fromCurrency: ICurrency, toCurrency: ICurrency) {
-  return amount * toCurrency.rate / fromCurrency.rate;
+  // Converting first to BigNumber to avoid floating point arithmetic issues
+  const bignumberAmount = new BigNumber(amount);
+  const bignumberToCurrencyRate = new BigNumber(toCurrency.rate);
+  const bignumberFromCurrencyRate = new BigNumber(fromCurrency.rate);
+  return bignumberAmount.times(bignumberToCurrencyRate).dividedBy(bignumberFromCurrencyRate).toNumber();
 }
 
 /**

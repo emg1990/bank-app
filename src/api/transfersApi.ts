@@ -2,7 +2,7 @@ import axios, { type AxiosError, type AxiosResponse } from 'axios';
 import { ICurrency, ITransfer } from '../util/types';
 import { BASE_URL } from '../config';
 import { getAccountById, updateAccount } from './accountsApi';
-import { getCurrencyConvertedAmount, roundDecimal } from '../util/helpers';
+import { getCurrencyConvertedAmount } from '../util/helpers';
 import { getCurrencies } from './currenciesApi';
 
 // Transfers Endpoints
@@ -39,22 +39,60 @@ export const getTransfers = async (): Promise<ITransfer[]> => {
  * @returns A Promise that resolves to the created transfer.
  * @throws An error if the transfer creation fails.
  */
-export const createTransfer = async (transfer: Omit<ITransfer, "id">): Promise<ITransfer> => {
+export const createTransfer = async ({
+  amount,
+  fromAccount: fromAccountId,
+  toAccount: toAccountId,
+  date,
+  currency,
+}: Omit<ITransfer, "id">): Promise<ITransfer> => {
+  // These validations should be done in BE as well since we're already doing some validations in the the form modal
+  if (!fromAccountId) {
+    throw new Error("Please provide a source account");
+  }
+  if (!toAccountId) {
+    throw new Error("Please provide a destination account");
+  }
+  if (!amount || amount <= 0) {
+    throw new Error("Please provide a valid amount");
+  }
+  if (!date) {
+    throw new Error("Please provide a date");
+  }
+  if (!currency) {
+    throw new Error("Please provide a currency");
+  }
+  if (fromAccountId === toAccountId) {
+    throw new Error("The source and destination accounts must be different");
+  }
+  const fromAccount = await getAccountById(fromAccountId);
+  if ((fromAccount.balance || 0) < amount) {
+    throw new Error("The amount exceeds the current balance!");
+  }
+
   try {
-    const newTrasfer = { ...transfer, id: new Date().getTime() }; // Generate a unique ID which should be done in BE
+    const newTrasfer = {
+      id: new Date().getTime(), // Generate a unique ID which should be done in BE
+      fromAccount: fromAccountId,
+      toAccount: toAccountId,
+      amount: amount,
+      currency: currency,
+      date: date,
+    }; 
     const response: AxiosResponse<ITransfer> = await axios.post(`${BASE_URL}/transfers`, newTrasfer);
     // Update the accounts balance should be done in BE
-    const fromAccount = await getAccountById(transfer.fromAccount);
-    const toAccount = await getAccountById(transfer.toAccount);
+    const toAccount = await getAccountById(toAccountId);
     const currencies = await getCurrencies();
+    
     // Convert the amount to the destination account currency
     const toAccountBalance = getCurrencyConvertedAmount(
-      transfer.amount,
+      amount,
       currencies.find((currency) => currency.code === fromAccount.currency) as ICurrency,
       currencies.find((currency) => currency.code === toAccount.currency) as ICurrency
     );
-    await updateAccount({ ...fromAccount, balance: roundDecimal(fromAccount.balance as number - transfer.amount) });
-    await updateAccount({ ...toAccount, balance: roundDecimal((toAccount.balance || 0) + toAccountBalance) });
+    
+    await updateAccount({ ...fromAccount, balance: fromAccount.balance as number - amount });
+    await updateAccount({ ...toAccount, balance: (toAccount.balance || 0) + toAccountBalance });
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

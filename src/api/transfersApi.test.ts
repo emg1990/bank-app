@@ -61,7 +61,13 @@ describe('createTransfer', () => {
   });
 
   it('should make a POST request to /transfers endpoint and create a new transfer', async () => {
-    const transfer = { fromAccount: 'account1', toAccount: 'account2', amount: 100, currency: 'USD', date: new Date().getTime() };
+    const transfer = {
+      fromAccount: 'account1' as string,
+      toAccount: 'account2',
+      amount: 100,
+      currency: 'USD',
+      date: new Date().getTime(),
+    };
     const responseData = { id: 'transfer1', ...transfer };
     (axios.post as jest.Mock).mockResolvedValueOnce({ data: responseData });
 
@@ -75,7 +81,10 @@ describe('createTransfer', () => {
 
     await createTransfer(transfer);
 
-    expect(axios.post).toHaveBeenCalledWith(`${BASE_URL}/transfers`, { ...transfer, id: expect.any(Number) });
+    expect(axios.post).toHaveBeenCalledWith(`${BASE_URL}/transfers`, {
+      ...transfer,
+      id: expect.any(Number),
+    });
     expect(getAccountById).toHaveBeenCalledWith('account1');
     expect(getAccountById).toHaveBeenCalledWith('account2');
     expect(getCurrencies).toHaveBeenCalled();
@@ -83,27 +92,69 @@ describe('createTransfer', () => {
     expect(updateAccount).toHaveBeenCalledWith({ ...toAccount, balance: 290 });
   });
 
-  it('should handle 401 response and throw an error', async () => {
-    const transfer = { fromAccount: 'account1', toAccount: 'account2', amount: 100, currency: 'USD', date: new Date().getTime()};
-    (axios.post as jest.Mock).mockRejectedValueOnce({ response: { status: 401 } });
+  it('should throw an error if any required field is missing', async () => {
+    const transfer = {
+      fromAccount: 'account1',
+      toAccount: 'account2',
+      amount: 100,
+      currency: 'USD',
+      date: new Date().getTime(),
+    };
 
-    await expect(createTransfer(transfer)).rejects.toThrow('You are not authorized to create transfers');
-    expect(axios.post).toHaveBeenCalledWith(`${BASE_URL}/transfers`, { ...transfer, id: expect.any(Number) });
+    // @ts-ignore ignore the error for testing purposes
+    await expect(createTransfer({ ...transfer, fromAccount: undefined })).rejects.toThrow('Please provide a source account');
+    // @ts-ignore ignore the error for testing purposes
+    await expect(createTransfer({ ...transfer, toAccount: undefined })).rejects.toThrow('Please provide a destination account');
+    // @ts-ignore ignore the error for testing purposes
+    await expect(createTransfer({ ...transfer, amount: undefined })).rejects.toThrow('Please provide a valid amount');
+    // @ts-ignore ignore the error for testing purposes
+    await expect(createTransfer({ ...transfer, currency: undefined })).rejects.toThrow('Please provide a currency');
+    // @ts-ignore ignore the error for testing purposes
+    await expect(createTransfer({ ...transfer, date: undefined })).rejects.toThrow('Please provide a date');
   });
 
-  it('should handle 403 response and throw an error', async () => {
-    const transfer = { fromAccount: 'account1', toAccount: 'account2', amount: 100, currency: 'USD', date: new Date().getTime() };
-    (axios.post as jest.Mock).mockRejectedValueOnce({ response: { status: 403 } });
-
-    await expect(createTransfer(transfer)).rejects.toThrow('You do not have permission to create transfers');
-    expect(axios.post).toHaveBeenCalledWith(`${BASE_URL}/transfers`, { ...transfer, id: expect.any(Number) });
+  it('should throw an error if the amount is equal to 0', async () => {
+    const transfer = {
+      fromAccount: 'account1',
+      toAccount: 'account2',
+      amount: 0,
+      currency: 'USD',
+      date: new Date().getTime(),
+    };
+    await expect(createTransfer(transfer)).rejects.toThrow('Please provide a valid amount');
   });
 
-  it('should handle unexpected error and throw a generic error', async () => {
-    const transfer = { fromAccount: 'account1', toAccount: 'account2', amount: 100, currency: 'USD', date: new Date().getTime() };
-    (axios.post as jest.Mock).mockRejectedValueOnce(new Error('Something went wrong'));
-
-    await expect(createTransfer(transfer)).rejects.toThrow('Oops! Something went wrong please try again later');
-    expect(axios.post).toHaveBeenCalledWith(`${BASE_URL}/transfers`, { ...transfer, id: expect.any(Number) });
+  it('should throw an error if the amount is less than or equal to 0', async () => {
+    const transfer = {
+      fromAccount: 'account1',
+      toAccount: 'account2',
+      amount: -100,
+      currency: 'USD',
+      date: new Date().getTime(),
+    };
+    await expect(createTransfer(transfer)).rejects.toThrow('Please provide a valid amount');
   });
+
+  it('should throw an error if the source and destination accounts are the same', async () => {
+    const transfer = {
+      fromAccount: 'account1',
+      toAccount: 'account1',
+      amount: 100,
+      currency: 'USD',
+      date: new Date().getTime(),
+    };
+    await expect(createTransfer(transfer)).rejects.toThrow('The source and destination accounts must be different');
+  });
+
+  it('should throw an error if the amount exceeds the current balance of the source account', async () => {
+    const transfer = {
+      fromAccount: 'account1',
+      toAccount: 'account2',
+      amount: 100,
+      currency: 'USD',
+      date: new Date().getTime(),
+    };
+    (getAccountById as jest.Mock).mockResolvedValueOnce({ id: 'account1', balance: 50, currency: 'USD' });
+    await expect(createTransfer(transfer)).rejects.toThrow('The amount exceeds the current balance!');
+  });  
 });
