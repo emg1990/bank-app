@@ -6,9 +6,11 @@ import { getAccounts, getMyAccounts } from '../../../api/accountsApi';
 import { useAppContext } from '../../../contexts/AppContext';
 import AddAccountModal from './AccountModal/AccountModal';
 import styles from './AccountsList.module.css';
+import Search from '../../Search/Search';
 
 const AccountsList = () => {
   const [accounts, setAccounts] = useState<IAccount[]>([]);
+  const [displayedAccounts, setDisplayedAccounts] = useState<IAccount[]>([]);
   const [selectedAccount, setSelectedAccount] = useState<IAccount | undefined>();
   const [openModal, setOpenModal] = useState(false);
   const { owner } = useAppContext();
@@ -18,6 +20,7 @@ const AccountsList = () => {
       try {
         const fetchedAccounts = await Promise.all([getMyAccounts(), getAccounts(owner.savedAccounts)]);
         setAccounts(fetchedAccounts.flat());
+        setDisplayedAccounts(fetchedAccounts.flat());
       } catch (error) {
         message.error((error as Error).message);
       }
@@ -39,15 +42,26 @@ const AccountsList = () => {
     setSelectedAccount(undefined);
   };
 
+  const onSearch = (value: string) => {
+    const filteredAccounts = accounts.filter(account => {
+      return (account.name || '').toLowerCase().includes(value.toLowerCase())
+        || account.currency.toLowerCase().includes(value.toLowerCase())
+        || account.id.toLowerCase().includes(value.toLowerCase())
+        || account.ownerId === parseInt(value)
+        || account.ownerDisplayName.toLowerCase().includes(value.toLowerCase());
+    });
+    setDisplayedAccounts(filteredAccounts);
+  }
+
   return (
     <Card
       title="Accounts"
-      extra={<Button shape="round" onClick={onAddAccount}>Add</Button>}
+      extra={<><Search onSearch={onSearch} /> <Button shape="round" onClick={onAddAccount}>Add</Button></>}
       className={styles.container}
     >
       <List
         itemLayout="horizontal"
-        dataSource={accounts}
+        dataSource={displayedAccounts}
         renderItem={account => <AccountRow onEdit={() => onEditAccount(account)} account={account} />}
       />
       {openModal && <AddAccountModal open={openModal} onCancel={onCloseModal} account={selectedAccount} />}

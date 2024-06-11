@@ -48,7 +48,8 @@
       "id": "FR1420041010050500013M02606",
       "ownerId": 3,
       "currency": "GBP",
-      "ownerDisplayName": "Emily Johnson"
+      "ownerDisplayName": "Emily Johnson",
+      "name": "Emily's account"
     },
     {
       "id": "ES9121000418450200051332",
@@ -135,31 +136,36 @@
       "code": "USD",
       "name": "United States Dollar",
       "symbol": "$",
-      "rate": 1
+      "rate": 1,
+      "id": "6a51"
     },
     {
       "code": "EUR",
       "name": "Euro",
       "symbol": "€",
-      "rate": 0.85
+      "rate": 0.85,
+      "id": "b6c1"
     },
     {
       "code": "GBP",
       "name": "British Pound Sterling",
       "symbol": "£",
-      "rate": 0.75
+      "rate": 0.75,
+      "id": "a901"
     },
     {
       "code": "JPY",
       "name": "Japanese Yen",
       "symbol": "¥",
-      "rate": 110
+      "rate": 110,
+      "id": "2b11"
     },
     {
       "code": "CAD",
       "name": "Canadian Dollar",
       "symbol": "C$",
-      "rate": 1.25
+      "rate": 1.25,
+      "id": "ab3b"
     }
   ],
   "owners": [
@@ -307,7 +313,7 @@
   ],
   "transfers": [
     {
-      "id": 1717985187333,
+      "id": "1717985187333",
       "fromAccount": "GB33BUKB20201555555555",
       "toAccount": "GB94BARC10201530093459",
       "amount": "505",
@@ -315,7 +321,7 @@
       "currency": "GBP"
     },
     {
-      "id": 1717985189807,
+      "id": "1717985189807",
       "fromAccount": "GB33BUKB20201555555555",
       "toAccount": "GB94BARC10201530093459",
       "amount": "505",
@@ -323,7 +329,7 @@
       "currency": "GBP"
     },
     {
-      "id": 1717985511768,
+      "id": "1717985511768",
       "fromAccount": "GB94BARC10201530093459",
       "toAccount": "GB33BUKB20201555555555",
       "amount": "500",
@@ -331,7 +337,7 @@
       "currency": "USD"
     },
     {
-      "id": 1718041968232,
+      "id": "1718041968232",
       "fromAccount": "GB94BARC10201530093459",
       "toAccount": "DE75512108001245126199",
       "amount": "146.67",
@@ -339,7 +345,7 @@
       "currency": "USD"
     },
     {
-      "id": 1718042871663,
+      "id": "1718042871663",
       "fromAccount": "DE75512108001245126199",
       "toAccount": "GB33BUKB20201555555555",
       "amount": "24.67",
@@ -347,7 +353,7 @@
       "currency": "EUR"
     },
     {
-      "id": 1718043212675,
+      "id": "1718043212675",
       "fromAccount": "GB33BUKB20201555555555",
       "toAccount": "DE75512108001245126199",
       "amount": "500",
@@ -355,7 +361,7 @@
       "currency": "GBP"
     },
     {
-      "id": 1718043339340,
+      "id": "1718043339340",
       "fromAccount": "DE75512108001245126199",
       "toAccount": "GB33BUKB20201555555555",
       "amount": "366.67",
@@ -363,7 +369,7 @@
       "currency": "EUR"
     },
     {
-      "id": 1718046078814,
+      "id": "1718046078814",
       "fromAccount": "GB94BARC10201530093459",
       "toAccount": "DE75512108001245126199",
       "amount": "500",
