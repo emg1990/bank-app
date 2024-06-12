@@ -41,7 +41,7 @@ const SeelectAccount: React.FC<SeelectAccountProps> = ({
   }
 
   const items: CollapseProps['items'] = accounts.map(account => {
-    const roundedBalance = roundDecimal(account.balance || 0);
+    const roundedBalance = roundDecimal(account.balance || 0, 5);
     
     return (
     {

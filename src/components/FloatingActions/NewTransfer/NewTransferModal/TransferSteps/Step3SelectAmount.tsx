@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Card, Form, FormInstance, InputNumber, Space, Typography } from 'antd';
+import BigNumber from 'bignumber.js';
 import StepsFooter from './shared/StepsFooter';
 import { getCurrencyByCode, getCurrencyConvertedAmount, roundDecimal } from '../../../../../util/helpers';
 import { useAppContext } from '../../../../../contexts/AppContext';
 import { ALLOWED_DECIMALS } from '../../../../../config';
+import styles from './TransferSteps.module.css';
 
 const { Text } = Typography;
 
@@ -18,7 +20,7 @@ const Step3SelectAmount: React.FC<Step3SelectAmountProps> = ({ form, onOk, onBac
   const initialAmount = form.getFieldValue('amount') || 0;
   const [amount, setAmount] = useState<number>(initialAmount);
   const [disabled, setDisabled] = useState<boolean>(!initialAmount);
-  const [currentBalance, setCurrentBalance] = useState<number>(balance - Number.parseFloat(initialAmount));
+  const [currentBalance, setCurrentBalance] = useState<number>(BigNumber(balance).minus(BigNumber(initialAmount)).toNumber());
   const { currencies } = useAppContext();
   const fromCurrency = getCurrencyByCode(form.getFieldValue('fromAccount').currency, currencies);
   const toCurrency = getCurrencyByCode(form.getFieldValue('toAccount').currency, currencies);
@@ -43,7 +45,7 @@ const Step3SelectAmount: React.FC<Step3SelectAmountProps> = ({ form, onOk, onBac
         { required: true, message: 'Please enter the transfer amount.' }, // This rule ensures that the amount is not empty
         () => ({
           validator(_, value) {
-            if (value && value <= 0) { // This rule ensures that the amount is greater than 0
+            if (value && BigNumber(value).lte(0)) { // This rule ensures that the amount is greater than 0
               return Promise.reject(new Error('The amount must be greater than 0.'));
             }
             if (value && value > balance) { // This rule ensures that the amount is less than the balance
@@ -55,6 +57,7 @@ const Step3SelectAmount: React.FC<Step3SelectAmountProps> = ({ form, onOk, onBac
       ]}>
         <InputNumber
           size="large"
+          className={styles.inputNumber}
           prefix={fromCurrency.symbol}
           type="number"
           precision={ALLOWED_DECIMALS}
@@ -62,7 +65,7 @@ const Step3SelectAmount: React.FC<Step3SelectAmountProps> = ({ form, onOk, onBac
         />
       </Form.Item>
       <Space direction="vertical">
-        <Text strong>Balance: <Text type='warning'>{roundDecimal(currentBalance)}{fromCurrency.symbol}</Text></Text>
+        <Text strong>Balance: <Text type='warning'>{BigNumber(currentBalance).toString()}{fromCurrency.symbol}</Text></Text>
         <Text type="secondary">The destination account will receive {roundDecimal(destinationAmount)}{toCurrency.symbol}</Text>
       </Space>
       <StepsFooter
