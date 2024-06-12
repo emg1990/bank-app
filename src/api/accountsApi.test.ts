@@ -4,7 +4,7 @@ import {
   getMyAccounts,
   getAccountById,
   getValidatedAccount,
-  createAccount,
+  addAccount,
   updateAccount,
   deleteAccount,
 } from './accountsApi';
@@ -215,7 +215,7 @@ describe('accountsApi', () => {
     });
   });
 
-  describe('createAccount', () => {
+  describe('addAccount', () => {
     it('should make a PUT request to /accounts/{id} endpoint and return the created account', async () => {
       const accountData = { id: 'account1', name: 'Account 1' } as IAccount;
       (mockAxios.put as jest.Mock).mockResolvedValueOnce({ data: accountData });
@@ -225,7 +225,7 @@ describe('accountsApi', () => {
         return;
       });
 
-      const result = await createAccount(accountData);
+      const result = await addAccount(accountData);
 
       expect(mockAxios.put).toHaveBeenCalledWith(`${BASE_URL}/accounts/${accountData.id}`, accountData);
       expect(result).toEqual(accountData);
@@ -235,7 +235,7 @@ describe('accountsApi', () => {
       const accountData = { id: 'account1', name: 'Account 1' } as IAccount;
       (mockAxios.put as jest.Mock).mockRejectedValueOnce({ response: { status: 401 } });
 
-      await expect(createAccount(accountData)).rejects.toThrow('You are not authorized to create an account');
+      await expect(addAccount(accountData)).rejects.toThrow('You are not authorized to create an account');
       expect(mockAxios.put).toHaveBeenCalledWith(`${BASE_URL}/accounts/${accountData.id}`, accountData);
       expect(mockAxios.get).not.toHaveBeenCalledWith(`${BASE_URL}/owners/${OWNER_ID}`);
     });
@@ -244,7 +244,7 @@ describe('accountsApi', () => {
       const accountData = { id: 'account1', name: 'Account 1' } as IAccount;
       (mockAxios.put as jest.Mock).mockRejectedValueOnce({ response: { status: 403 } });
 
-      await expect(createAccount(accountData)).rejects.toThrow('You do not have permission to create an account');
+      await expect(addAccount(accountData)).rejects.toThrow('You do not have permission to create an account');
       expect(mockAxios.put).toHaveBeenCalledWith(`${BASE_URL}/accounts/${accountData.id}`, accountData);
       expect(mockAxios.get).not.toHaveBeenCalledWith(`${BASE_URL}/owners/${OWNER_ID}`);
     });
@@ -253,7 +253,7 @@ describe('accountsApi', () => {
       const accountData = { id: 'account1', name: 'Account 1' } as IAccount;
       (mockAxios.put as jest.Mock).mockRejectedValueOnce(new Error('Something went wrong'));
 
-      await expect(createAccount(accountData)).rejects.toThrow('Oops! Something went wrong please try again later');
+      await expect(addAccount(accountData)).rejects.toThrow('Oops! Something went wrong please try again later');
       expect(mockAxios.put).toHaveBeenCalledWith(`${BASE_URL}/accounts/${accountData.id}`, accountData);
       expect(mockAxios.get).not.toHaveBeenCalledWith(`${BASE_URL}/owners/${OWNER_ID}`);
     });

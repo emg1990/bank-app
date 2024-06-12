@@ -3,7 +3,7 @@ import { Form, Input, Modal, message } from 'antd';
 import { IAccount } from '../../../../util/types';
 import { useAppContext } from '../../../../contexts/AppContext';
 import { getParsedCurrencyByCode } from '../../../../util/helpers';
-import { getValidatedAccount, createAccount, updateAccount } from '../../../../api/accountsApi';
+import { getValidatedAccount, addAccount, updateAccount } from '../../../../api/accountsApi';
 
 interface AccountModalProps {
   open: boolean;
@@ -52,7 +52,7 @@ const AccountModal: React.FC<AccountModalProps> = ({ open, onCancel, account }) 
         updateOwnerSavedAccounts(owner.savedAccounts);
         message.success("Account updated successfully");
       } else {
-        await createAccount(updatedAccount);
+        await addAccount(updatedAccount);
         const uniqueAccounts = [...new Set([...owner.savedAccounts, updatedAccount.id])];
         updateOwnerSavedAccounts(uniqueAccounts);
         message.success("Account created successfully");

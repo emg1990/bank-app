@@ -115,7 +115,7 @@ export const getValidatedAccount = async (id: string): Promise<IAccount> => {
  * @throws Error if there is an authorization or permission issue, or if something goes wrong during the creation process.
  * @throws Error if an unexpected error occurs.
  */
-export const createAccount = async (account: IAccount): Promise<IAccount> => {
+export const addAccount = async (account: IAccount): Promise<IAccount> => {
   try {
     const response: AxiosResponse<IAccount> = await axios.put(`${BASE_URL}/accounts/${account.id}`, account);
     // This should be added in the backend
