@@ -47,7 +47,7 @@ const AccountsList = () => {
       return (account.name || '').toLowerCase().includes(value.toLowerCase())
         || account.currency.toLowerCase().includes(value.toLowerCase())
         || account.id.toLowerCase().includes(value.toLowerCase())
-        || account.ownerId === parseInt(value)
+        || account.ownerId == parseInt(value)
         || account.ownerDisplayName.toLowerCase().includes(value.toLowerCase());
     });
     setDisplayedAccounts(filteredAccounts);

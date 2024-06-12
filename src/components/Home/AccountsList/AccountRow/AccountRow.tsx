@@ -18,7 +18,7 @@ const AccountRow: React.FC<AccountRowProps> = ({ account, onEdit }) => {
 
   const onDelete = () => {
     try {
-      if (account.ownerId === owner.id) {
+      if (account.ownerId == owner.id) {
         if (account.balance === 0) {
           deleteAccount(account);
           setMyAccountsLastUpdate(new Date().getTime());
