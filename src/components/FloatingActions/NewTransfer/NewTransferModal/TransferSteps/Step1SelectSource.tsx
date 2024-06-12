@@ -25,6 +25,10 @@ const Step1SelectSource: React.FC<Step1SelectSourceProps> = ({ form, onNext, onC
   }, []);
 
   const next = (fromAccount: IAccount) => {
+    if (!fromAccount.balance) {
+      message.warning('Account balance is 0, please select another account.');
+      return;
+    }
     form.setFieldsValue({ fromAccount });
     onNext();
   }

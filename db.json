@@ -129,14 +129,6 @@
       "ownerId": 10,
       "currency": "EUR",
       "ownerDisplayName": "Thomas Harris"
-    },
-    {
-      "id": "LU234123412734897",
-      "name": "hi",
-      "currency": "EUR",
-      "ownerId": "1",
-      "ownerDisplayName": "John Doe",
-      "balance": 0
     }
   ],
   "currencies": [
