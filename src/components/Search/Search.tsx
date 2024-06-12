@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input } from 'antd';
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 import styles from './Search.module.css';
@@ -8,7 +8,7 @@ interface SearchProps {
 }
 
 const Search: React.FC<SearchProps> = ({ onSearch }) => {
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const onCloseSearch = () => {
     setIsExpanded(false);
@@ -21,7 +21,6 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
         <Input
           placeholder="Search"
           onChange={e => onSearch(e.target.value)}
-          onBlur={onCloseSearch}
           autoFocus
           suffix={<CloseOutlined onClick={onCloseSearch} data-testid="close-icon"/>}
           data-testid="search-input"

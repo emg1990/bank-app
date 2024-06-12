@@ -3,8 +3,8 @@ import { Button, List, Popconfirm } from 'antd';
 import { DeleteOutlined, EditOutlined, UserOutlined } from '@ant-design/icons';
 import { IAccount } from '../../../../util/types';
 import { deleteAccount } from '../../../../api/accountsApi';
-import styles from './AccountRow.module.css';
 import { useAppContext } from '../../../../contexts/AppContext';
+import styles from './AccountRow.module.css';
 
 const { Item } = List;
 
@@ -26,7 +26,7 @@ const AccountRow: React.FC<AccountRowProps> = ({ account, onEdit }) => {
       <Item.Meta
         avatar={<UserOutlined />}
         title={<div className={styles.titleContainer}>
-          <span>Account: {account.name || account.id}</span>
+          <span className={styles.title}>Account: {account.name || account.id}</span>
           <div>
             <Button
               type="text"

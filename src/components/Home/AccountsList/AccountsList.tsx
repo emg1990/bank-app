@@ -5,8 +5,8 @@ import AccountRow from './AccountRow/AccountRow';
 import { getAccounts, getMyAccounts } from '../../../api/accountsApi';
 import { useAppContext } from '../../../contexts/AppContext';
 import AddAccountModal from './AccountModal/AccountModal';
-import styles from './AccountsList.module.css';
 import Search from '../../Search/Search';
+import styles from './AccountsList.module.css';
 
 const AccountsList = () => {
   const [accounts, setAccounts] = useState<IAccount[]>([]);
@@ -53,18 +53,16 @@ const AccountsList = () => {
     setDisplayedAccounts(filteredAccounts);
   };
 
-  const HeaderActions = () => <>
-    <Search onSearch={onSearch} />
-    {' '}
-    <Tooltip title="Add an account to your list using an existing account id.">
-      <Button shape="round" onClick={onAddAccount}>Add</Button>
-    </Tooltip>
-  </>;
-
   return (
     <Card
       title="Linked Accounts"
-      extra={<HeaderActions />}
+      extra={<>
+        <Search onSearch={onSearch} />
+        {' '}
+        <Tooltip title="Add an account to your list using an existing account id.">
+          <Button shape="round" onClick={onAddAccount}>Add</Button>
+        </Tooltip>
+      </>}
       className={styles.container}
     >
       <List

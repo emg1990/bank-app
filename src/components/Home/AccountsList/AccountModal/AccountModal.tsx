@@ -55,7 +55,7 @@ const AccountModal: React.FC<AccountModalProps> = ({ open, onCancel, account }) 
         await addAccount(updatedAccount);
         const uniqueAccounts = [...new Set([...owner.savedAccounts, updatedAccount.id])];
         updateOwnerSavedAccounts(uniqueAccounts);
-        message.success("Account created successfully");
+        message.success("Account added successfully");
       }
       onCancel();
     } catch (error) {
@@ -65,13 +65,15 @@ const AccountModal: React.FC<AccountModalProps> = ({ open, onCancel, account }) 
     }
   };
 
+  const accountAction = account ? "Update" : "Add";
+
   return (
     <Modal
-      title={"Create an account"}
+      title={`${accountAction} an account`}
       onCancel={onCancel}
       open={open}
       onOk={validatedAccount ? handleSave : handleValidate}
-      okText={validatedAccount ? "Create" : "Validate"}
+      okText={validatedAccount ? accountAction : "Validate"}
       okButtonProps={{ disabled: !accountId }}
       confirmLoading={loading}
     >

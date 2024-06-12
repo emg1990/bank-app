@@ -2,3 +2,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+.title{
+  max-width: calc(100% - 65px);
+  word-wrap: break-word;
+}
