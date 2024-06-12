@@ -22,6 +22,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
           placeholder="Search"
           onChange={e => onSearch(e.target.value)}
           autoFocus
+          onBlur={onCloseSearch}
           suffix={<CloseOutlined onClick={onCloseSearch} data-testid="close-icon"/>}
           data-testid="search-input"
         />

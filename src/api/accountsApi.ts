@@ -204,7 +204,7 @@ export const updateAccount = async (account: IAccount): Promise<IAccount> => {
  * @param account - The account to be deleted.
  * @throws Error - If the user is not authorized or does not have permission to delete the account, or if an error occurs during the deletion process.
  */
-export const deleteAccount = async (account: IAccount): Promise<void> => {
+export const removeAccountFromList = async (account: IAccount): Promise<void> => {
   try {
     await axios.put(`${BASE_URL}/accounts/${account.id}`, { ...account, name: '' });
     // This should be added in the backend

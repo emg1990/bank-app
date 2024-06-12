@@ -6,7 +6,7 @@ import {
   getValidatedAccount,
   addAccount,
   updateAccount,
-  deleteAccount,
+  removeAccountFromList,
 } from './accountsApi';
 import * as ownersApi from './ownersApi';
 import { BASE_URL, OWNER_ID } from '../config';
@@ -295,7 +295,7 @@ describe('accountsApi', () => {
     });
   });
 
-  describe('deleteAccount', () => {
+  describe('removeAccountFromList', () => {
     it('should make a PUT request to /accounts/{id} endpoint with an empty name and delete the account', async () => {
       const accountData = { id: 'account1', name: 'Account 1' } as IAccount;
       (mockAxios.put as jest.Mock).mockResolvedValueOnce({});
@@ -306,7 +306,7 @@ describe('accountsApi', () => {
         return;
       });
 
-      await deleteAccount(accountData);
+      await removeAccountFromList(accountData);
 
       expect(mockAxios.put).toHaveBeenCalledWith(`${BASE_URL}/accounts/${accountData.id}`, { ...accountData, name: '' });
     });
@@ -315,7 +315,7 @@ describe('accountsApi', () => {
       const accountData = { id: 'account1', name: 'Account 1' } as IAccount;
       (mockAxios.put as jest.Mock).mockRejectedValueOnce({ response: { status: 401 } });
 
-      await expect(deleteAccount(accountData)).rejects.toThrow('You are not authorized to delete an account');
+      await expect(removeAccountFromList(accountData)).rejects.toThrow('You are not authorized to delete an account');
       expect(mockAxios.put).toHaveBeenCalledWith(`${BASE_URL}/accounts/${accountData.id}`, { ...accountData, name: '' });
       expect(mockAxios.get).not.toHaveBeenCalledWith(`${BASE_URL}/owners`);
     });
@@ -324,7 +324,7 @@ describe('accountsApi', () => {
       const accountData = { id: 'account1', name: 'Account 1' } as IAccount;
       (mockAxios.put as jest.Mock).mockRejectedValueOnce({ response: { status: 403 } });
 
-      await expect(deleteAccount(accountData)).rejects.toThrow('You do not have permission to delete an account');
+      await expect(removeAccountFromList(accountData)).rejects.toThrow('You do not have permission to delete an account');
       expect(mockAxios.put).toHaveBeenCalledWith(`${BASE_URL}/accounts/${accountData.id}`, { ...accountData, name: '' });
       expect(mockAxios.get).not.toHaveBeenCalledWith(`${BASE_URL}/owners`);
     });
@@ -333,7 +333,7 @@ describe('accountsApi', () => {
       const accountData = { id: 'account1', name: 'Account 1' } as IAccount;
       (mockAxios.put as jest.Mock).mockRejectedValueOnce(new Error('Something went wrong'));
 
-      await expect(deleteAccount(accountData)).rejects.toThrow('Oops! Something went wrong please try again later');
+      await expect(removeAccountFromList(accountData)).rejects.toThrow('Oops! Something went wrong please try again later');
       expect(mockAxios.put).toHaveBeenCalledWith(`${BASE_URL}/accounts/${accountData.id}`, { ...accountData, name: '' });
       expect(mockAxios.get).not.toHaveBeenCalledWith(`${BASE_URL}/owners`);
     });
