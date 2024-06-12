@@ -22,6 +22,8 @@ export const getCurrencies = async (): Promise<ICurrency[]> => {
         throw new Error("You are not authorized to fetch currencies");
       } else if (axiosError.response?.status === 403) {
         throw new Error("You do not have permission to fetch currencies");
+      } else if (axiosError.code === "ERR_NETWORK") {
+        throw new Error("Our server is currently offline. Please try again later.");
       }
     }
     throw new Error("Oops! Something went wrong please try again later");

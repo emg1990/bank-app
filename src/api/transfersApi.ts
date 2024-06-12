@@ -26,6 +26,8 @@ export const getTransfers = async (): Promise<ITransfer[]> => {
         throw new Error("You are not authorized to fetch transfers");
       } else if (axiosError.response?.status === 403) {
         throw new Error("You do not have permission to fetch transfers");
+      } else if (axiosError.code === "ERR_NETWORK") {
+        throw new Error("Our server is currently offline. Please try again later.");
       }
     }
     throw new Error("Oops! Something went wrong please try again later");

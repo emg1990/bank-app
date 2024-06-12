@@ -29,6 +29,8 @@ export const getAccounts = async (savedAccounts: string[]): Promise<IAccount[]> 
         throw new Error("You are not authorized to fetch accounts");
       } else if (axiosError.response?.status === 403) {
         throw new Error("You do not have permission to fetch accounts");
+      } else if (axiosError.code === "ERR_NETWORK") {
+        throw new Error("Our server is currently offline. Please try again later.");
       }
     }
     throw new Error("Oops! Something went wrong please try again later");
@@ -55,6 +57,8 @@ export const getMyAccounts = async (): Promise<IAccount[]> => {
         throw new Error("You are not authorized to fetch accounts");
       } else if (axiosError.response?.status === 403) {
         throw new Error("You do not have permission to fetch accounts");
+      } else if (axiosError.code === "ERR_NETWORK") {
+        throw new Error("Our server is currently offline. Please try again later.");
       }
     }
     throw new Error("Oops! Something went wrong please try again later");
@@ -82,6 +86,8 @@ export const getAccountById = async (id: string): Promise<IAccount> => {
         throw new Error("You are not authorized to access this account");
       } else if (axiosError.response?.status === 403) {
         throw new Error("You do not have permission to access this account");
+      } else if (axiosError.code === "ERR_NETWORK") {
+        throw new Error("Our server is currently offline. Please try again later.");
       }
     }
     throw new Error("Oops! Something went wrong please try again later");
@@ -130,6 +136,8 @@ export const addAccount = async (account: IAccount): Promise<IAccount> => {
         throw new Error("You are not authorized to create an account");
       } else if (axiosError.response?.status === 403) {
         throw new Error("You do not have permission to create an account");
+      } else if (axiosError.code === "ERR_NETWORK") {
+        throw new Error("Our server is currently offline. Please try again later.");
       }
     }
     throw new Error("Oops! Something went wrong please try again later");
@@ -162,6 +170,8 @@ export const createAccount = async (account: IAccount): Promise<IAccount> => {
               throw new Error("You are not authorized to create an account");
             } else if (axiosError.response?.status === 403) {
               throw new Error("You do not have permission to create an account");
+            } else if (axiosError.code === "ERR_NETWORK") {
+              throw new Error("Our server is currently offline. Please try again later.");
             }
           }
         }
@@ -192,6 +202,8 @@ export const updateAccount = async (account: IAccount): Promise<IAccount> => {
         throw new Error("You are not authorized to update an account");
       } else if (axiosError.response?.status === 403) {
         throw new Error("You do not have permission to update an account");
+      } else if (axiosError.code === "ERR_NETWORK") {
+        throw new Error("Our server is currently offline. Please try again later.");
       }
     }
     throw new Error("Oops! Something went wrong please try again later");
@@ -217,6 +229,8 @@ export const removeAccountFromList = async (account: IAccount): Promise<void> =>
         throw new Error("You are not authorized to delete an account");
       } else if (axiosError.response?.status === 403) {
         throw new Error("You do not have permission to delete an account");
+      } else if (axiosError.code === "ERR_NETWORK") {
+        throw new Error("Our server is currently offline. Please try again later.");
       }
     }
     throw new Error("Oops! Something went wrong please try again later");
@@ -244,6 +258,8 @@ export const deleteAccount = async (account: IAccount): Promise<void> => {
         throw new Error("You are not authorized to delete an account");
       } else if (axiosError.response?.status === 403) {
         throw new Error("You do not have permission to delete an account");
+      } else if (axiosError.code === "ERR_NETWORK") {
+        throw new Error("Our server is currently offline. Please try again later.");
       }
     }
     throw new Error("Oops! Something went wrong please try again later");

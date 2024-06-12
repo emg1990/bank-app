@@ -22,6 +22,8 @@ export const getOwner = async (): Promise<IOwner> => {
         throw new Error("You are not authorized to fetch owner information");
       } else if (axiosError.response?.status === 403) {
         throw new Error("You do not have permission to fetch owner information");
+      } else if (axiosError.code === "ERR_NETWORK") {
+        throw new Error("Our server is currently offline. Please try again later.");
       }
     }
     throw new Error("Oops! Something went wrong please try again later");
@@ -50,6 +52,8 @@ export const addOwnerSavedAccounts = async (accountId: string): Promise<void> =>
         throw new Error("You are not authorized to add the account to the owner");
       } else if (axiosError.response?.status === 403) {
         throw new Error("You do not have permission to add the account to the owner");
+      } else if (axiosError.code === "ERR_NETWORK") {
+        throw new Error("Our server is currently offline. Please try again later.");
       }
     }
     throw new Error("Oops! Something went wrong please try again later");
@@ -77,6 +81,8 @@ export const deleteOwnerSavedAccounts = async (accountId: string): Promise<void>
         throw new Error("You are not authorized to remove the account from the owner");
       } else if (axiosError.response?.status === 403) {
         throw new Error("You do not have permission to remove the account from the owner");
+      } else if (axiosError.code === "ERR_NETWORK") {
+        throw new Error("Our server is currently offline. Please try again later.");
       }
     }
     throw new Error("Oops! Something went wrong please try again later");
