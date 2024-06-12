@@ -120,7 +120,7 @@ export const addAccount = async (account: IAccount): Promise<IAccount> => {
     const response: AxiosResponse<IAccount> = await axios.put(`${BASE_URL}/accounts/${account.id}`, account);
     // This should be added in the backend
     await addOwnerSavedAccounts(account.id);
- 
+
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -130,6 +130,41 @@ export const addAccount = async (account: IAccount): Promise<IAccount> => {
         throw new Error("You are not authorized to create an account");
       } else if (axiosError.response?.status === 403) {
         throw new Error("You do not have permission to create an account");
+      }
+    }
+    throw new Error("Oops! Something went wrong please try again later");
+  }
+};
+
+/**
+ * Creates a new account checking if the account already exists.
+ * @param account - The account object to be created.
+ * @returns A promise that resolves to the created account.
+ * @throws An error if the account already exists, the user is not authorized, or there is a server error.
+ */
+export const createAccount = async (account: IAccount): Promise<IAccount> => {
+  try {
+    // This will check if the account already exists, it is expected to throw a 404 error
+    await axios.get(`${BASE_URL}/accounts/${account.id}`);
+    throw new Error("An account with that ID already exists");
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const axiosError: AxiosError = error;
+      if (axiosError.response?.status === 404) {
+        try {
+          const response: AxiosResponse<IAccount> = await axios.post(`${BASE_URL}/accounts`, account);
+          return response.data;
+        } catch (error) {
+          if (axios.isAxiosError(error)) {
+            const axiosError: AxiosError = error;
+            if (axiosError.response?.status === 401) {
+              // Should redirect to login page
+              throw new Error("You are not authorized to create an account");
+            } else if (axiosError.response?.status === 403) {
+              throw new Error("You do not have permission to create an account");
+            }
+          }
+        }
       }
     }
     throw new Error("Oops! Something went wrong please try again later");
@@ -147,7 +182,7 @@ export const addAccount = async (account: IAccount): Promise<IAccount> => {
 export const updateAccount = async (account: IAccount): Promise<IAccount> => {
   try {
     const response: AxiosResponse<IAccount> = await axios.put(`${BASE_URL}/accounts/${account.id}`, account);
- 
+
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -174,7 +209,7 @@ export const deleteAccount = async (account: IAccount): Promise<void> => {
     await axios.put(`${BASE_URL}/accounts/${account.id}`, { ...account, name: '' });
     // This should be added in the backend
     await deleteOwnerSavedAccounts(account.id);
-   } catch (error) {
+  } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError: AxiosError = error;
       if (axiosError.response?.status === 401) {

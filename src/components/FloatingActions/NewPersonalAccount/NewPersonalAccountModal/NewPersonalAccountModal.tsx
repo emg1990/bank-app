@@ -1,7 +1,9 @@
-import { Form, Input, Modal, Select, Typography } from 'antd';
+import { Button, Form, Input, Modal, Select, Typography, message } from 'antd';
 import React from 'react';
 import { useAppContext } from '../../../../contexts/AppContext';
 import { IBAN_REGEX, getParsedCurrencyByCode } from '../../../../util/helpers';
+import { IAccount } from '../../../../util/types';
+import { createAccount } from '../../../../api/accountsApi';
 
 const { Text } = Typography;
 
@@ -12,10 +14,23 @@ interface NewPersonalAccountModalProps {
 
 const NewPersonalAccountModal: React.FC<NewPersonalAccountModalProps> = ({ open, onCancel }) => {
   const [form] = Form.useForm();
-  const { currencies, owner } = useAppContext();
+  const { currencies, owner, setMyAccountsLastUpdate } = useAppContext();
 
-  const createAccount = async () => {
-    // create personal account
+  const onCreateAccount = async () => {
+    const account: IAccount = {
+      ...form.getFieldsValue() as Pick<IAccount, 'id' | 'name' | 'currency'>,
+      ownerId: owner.id,
+      ownerDisplayName: owner.displayName,
+      balance: 0,
+    };
+    try {
+      await createAccount(account);
+      setMyAccountsLastUpdate(new Date().getTime());
+      console.log('create personal account', account);
+      onCancel();
+    } catch (error) {
+      message.error((error as Error).message)
+    }
   };
 
   return (
@@ -28,7 +43,7 @@ const NewPersonalAccountModal: React.FC<NewPersonalAccountModalProps> = ({ open,
     >
       <Form
         name="fund_transfer_form"
-        onFinish={createAccount}
+        onFinish={onCreateAccount}
         form={form}
         layout="horizontal"
         labelCol={{ span: 7 }}
@@ -36,10 +51,10 @@ const NewPersonalAccountModal: React.FC<NewPersonalAccountModalProps> = ({ open,
       >
         <Form.Item
           label="Account Id"
-          name="accountId"
+          name="id"
           rules={[
             { required: true, message: 'Please enter account number' },
-            { pattern: IBAN_REGEX, message: 'Invalid account number format' }
+            { pattern: IBAN_REGEX, message: 'Invalid account IBAN format' }
           ]}
         >
           <Input />
@@ -71,6 +86,7 @@ const NewPersonalAccountModal: React.FC<NewPersonalAccountModalProps> = ({ open,
         >
           <Text type="secondary">{owner.displayName}</Text>
         </Form.Item>
+        <Button type="primary" htmlType="submit">Create Account</Button>
       </Form>
     </Modal>
   );
