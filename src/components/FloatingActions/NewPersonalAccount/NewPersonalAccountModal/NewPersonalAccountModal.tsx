@@ -26,8 +26,8 @@ const NewPersonalAccountModal: React.FC<NewPersonalAccountModalProps> = ({ open,
     try {
       await createAccount(account);
       setMyAccountsLastUpdate(new Date().getTime());
-      console.log('create personal account', account);
       onCancel();
+      message.success('Account created successfully');
     } catch (error) {
       message.error((error as Error).message)
     }

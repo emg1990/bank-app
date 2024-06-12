@@ -245,7 +245,7 @@ export const removeAccountFromList = async (account: IAccount): Promise<void> =>
  * @throws {Error} If an unexpected error occurs during the deletion process.
  */
 export const deleteAccount = async (account: IAccount): Promise<void> => {
-  if (account.ownerId !== OWNER_ID) {
+  if (account.ownerId != OWNER_ID) {
     throw new Error("You are not authorized to delete this account");
   }
   try {

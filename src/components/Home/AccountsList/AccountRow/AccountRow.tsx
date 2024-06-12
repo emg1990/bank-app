@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, List, Popconfirm } from 'antd';
+import { Button, List, Popconfirm, message } from 'antd';
 import { DeleteOutlined, EditOutlined, UserOutlined } from '@ant-design/icons';
 import { IAccount } from '../../../../util/types';
 import { deleteAccount, removeAccountFromList } from '../../../../api/accountsApi';
@@ -17,12 +17,22 @@ const AccountRow: React.FC<AccountRowProps> = ({ account, onEdit }) => {
   const { owner, updateOwnerSavedAccounts, setMyAccountsLastUpdate } = useAppContext();
 
   const onDelete = () => {
-    if (account.ownerId === owner.id) {
-      deleteAccount(account);
-      setMyAccountsLastUpdate(new Date().getTime());
-    } else {
-      removeAccountFromList(account);
-      updateOwnerSavedAccounts(owner.savedAccounts.filter(id => id !== account.id));
+    try {
+      if (account.ownerId === owner.id) {
+        if (account.balance === 0) {
+          deleteAccount(account);
+          setMyAccountsLastUpdate(new Date().getTime());
+        } else {
+          message.warning("You can't delete your account if it has a balance. Please transfer the money first.");
+          return;
+        }
+      } else {
+        removeAccountFromList(account);
+        updateOwnerSavedAccounts(owner.savedAccounts.filter(id => id !== account.id));
+      }
+      message.success('Account deleted successfully');
+    } catch (error) {
+      message.error((error as Error).message);
     }
   };
 

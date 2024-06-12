@@ -15,7 +15,6 @@ interface Step3SelectAmountProps {
 
 const Step3SelectAmount: React.FC<Step3SelectAmountProps> = ({ form, onOk, onBack }) => {
   const balance = form.getFieldValue('fromAccount').balance;
-  console.log(balance, form.getFieldValue('amount'), form.getFieldValue('fromAccount'));
   const initialAmount = form.getFieldValue('amount') || 0;
   const [amount, setAmount] = useState<number>(initialAmount);
   const [disabled, setDisabled] = useState<boolean>(!initialAmount);
