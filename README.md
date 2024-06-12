@@ -29,7 +29,8 @@ This Bank App allows users to manage their bank accounts, make transfers between
 
 ### Account Management
 
-- **Add Accounts**: Add new accounts to your owner's account list.
+- **Create Accounts**: Create a personal account.
+- **Add Accounts**: Add existing accounts from other owners to your account list.
 - **Edit Accounts**: Edit details of existing accounts in owner's list.
 - **Delete Accounts**: Remove accounts from owner's list.
 - **Account Existence Check**: Can only add accounts if they exist in the bank (DB) and belong to another owner.
@@ -97,12 +98,13 @@ This Bank App allows users to manage their bank accounts, make transfers between
       - You can also search the accounts using the search button on the account's list header
 
   - **Perform Transactions**:
-      - On the bottom right you'll find a button which will open a modal to create a new transaction.
-      - Transfer funds between your accounts.
-      - Transfer funds to other accounts.
+      - Transfer funds between your accounts and to other accounts.
+        - On the bottom right you'll find the New Transfer button which will open a modal to create a new transaction.
 
   - **Manage Your Accounts**:
-      - Add new accounts to your list, the account must exist on the DB (view [Mocked Account IDs](#mocked-account-ids) for examples).
+      - Create new personal accounts.
+        - On the bottom right you'll find the New Account button which will open a modal to create a new account.
+      - Add accounts to your list, the account must exist on the DB (view [Mocked Account IDs](#mocked-account-ids) for examples).
         - On the far right of the Accounts header you'll find a button which will open the Add modal.
       - Edit existing accounts.
         - On the right of each account from the list you'll find a notepad icon which will open the Edit modal.
@@ -117,10 +119,6 @@ This Bank App allows users to manage their bank accounts, make transfers between
 
 ### Mocked Account IDs
 - **List of Mocked Account IDs** Add one of the following accounts:
-    - GB33BUKB20201555555555
-    - GB94BARC10201530093459
-    - DE75512108001245126199
-    - IT60X0542811101000000123456
     - DE89370400440532013000
     - FR7630006000011234567890189
     - FR1420041010050500013M02606
