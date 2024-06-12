@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Card, Form, FormInstance, InputNumber, Space, Typography } from 'antd';
 import StepsFooter from './shared/StepsFooter';
-import { getCurrencyByCode, getCurrencyConvertedAmount, roundDecimal } from '../../../../util/helpers';
-import { useAppContext } from '../../../../contexts/AppContext';
-import { ALLOWED_DECIMALS } from '../../../../config';
+import { getCurrencyByCode, getCurrencyConvertedAmount, roundDecimal } from '../../../../../util/helpers';
+import { useAppContext } from '../../../../../contexts/AppContext';
+import { ALLOWED_DECIMALS } from '../../../../../config';
 
 const { Text } = Typography;
 

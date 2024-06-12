@@ -102,7 +102,7 @@ export const getValidatedAccount = async (id: string): Promise<IAccount> => {
   const owner = await getOwner();
   // This validation should be added in the backend
   if (account.ownerId === OWNER_ID || owner.savedAccounts.includes(account.id)) {
-    throw new Error("This account was already added.");
+    throw new Error("This account is already in your Accounts list.");
   }
   return account;
 };

@@ -83,3 +83,6 @@ export function roundDecimal(value: number, decimals = ALLOWED_DECIMALS) {
 export function displayDateTime(dateInMs: number): string {
   return new Date(dateInMs).toLocaleString('en-GB');
 }
+
+// Regular expression for IBAN validation
+export const IBAN_REGEX = /^[A-Z]{2}\d{2}[A-Z0-9]{4}\d{7}([A-Z0-9]?){0,16}$/;

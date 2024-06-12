@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import NewTransferModal from './NewTransferModal/NewTransferModal';
-import styles from './NewTransfer.module.css';
+import { TransactionOutlined } from '@ant-design/icons';
 
 const NewTransfer: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,11 +18,11 @@ const NewTransfer: React.FC = () => {
     <>
       <Button
         onClick={openNewTransferModal}
-        className={styles.button}
         shape="round"
         type='primary'
         size="large"
       >
+        <TransactionOutlined />
         New Transfer
       </Button>
       {isModalOpen && <NewTransferModal open={isModalOpen} onCancel={closeNewTransferModal} />}

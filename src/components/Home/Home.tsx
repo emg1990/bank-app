@@ -7,7 +7,6 @@ import styles from './Home.module.css'
 
 const { Title } = Typography;
 
-
 const Home: React.FC = () => {
   return (
     <>

@@ -1,8 +1,8 @@
 import { Card, Collapse, CollapseProps } from 'antd';
 import React, { useState } from 'react';
-import { IAccount } from '../../../../../util/types';
+import { IAccount } from '../../../../../../util/types';
 import StepsFooter from './StepsFooter';
-import { roundDecimal } from '../../../../../util/helpers';
+import { roundDecimal } from '../../../../../../util/helpers';
 import { UserOutlined } from '@ant-design/icons';
 
 interface SeelectAccountProps {

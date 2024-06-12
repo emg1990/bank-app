@@ -1,9 +1,9 @@
 import { FormInstance, message } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { getAccounts, getMyAccounts } from '../../../../api/accountsApi';
-import { IAccount } from '../../../../util/types';
+import { getAccounts, getMyAccounts } from '../../../../../api/accountsApi';
+import { IAccount } from '../../../../../util/types';
 import SeelectAccount from './shared/SelectAccount';
-import { useAppContext } from '../../../../contexts/AppContext';
+import { useAppContext } from '../../../../../contexts/AppContext';
 
 interface Step2SelectDestinationProps {
   form: FormInstance;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
-import NewTransfer from './components/NewTransfer/NewTransfer';
 import Home from './components/Home/Home';
 import styles from './App.module.css';
 import { AppProvider } from './contexts/AppContext';
+import FloatingActions from './components/FloatingActions/FloatingActions';
 
 const App: React.FC = () => {
   return (
@@ -16,8 +16,8 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
           </Routes>
         </div>
-        <NewTransfer />
       </Router>
+      <FloatingActions />
     </AppProvider>
   );
 };

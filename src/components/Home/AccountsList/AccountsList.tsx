@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, List, message } from 'antd';
+import { Button, Card, List, Tooltip, message } from 'antd';
 import { IAccount } from '../../../util/types';
 import AccountRow from './AccountRow/AccountRow';
 import { getAccounts, getMyAccounts } from '../../../api/accountsApi';
@@ -51,12 +51,20 @@ const AccountsList = () => {
         || account.ownerDisplayName.toLowerCase().includes(value.toLowerCase());
     });
     setDisplayedAccounts(filteredAccounts);
-  }
+  };
+
+  const HeaderActions = () => <>
+    <Search onSearch={onSearch} />
+    {' '}
+    <Tooltip title="Add an account to your list using an existing account id.">
+      <Button shape="round" onClick={onAddAccount}>Add</Button>
+    </Tooltip>
+  </>;
 
   return (
     <Card
-      title="Accounts"
-      extra={<><Search onSearch={onSearch} /> <Button shape="round" onClick={onAddAccount}>Add</Button></>}
+      title="Linked Accounts"
+      extra={<HeaderActions />}
       className={styles.container}
     >
       <List

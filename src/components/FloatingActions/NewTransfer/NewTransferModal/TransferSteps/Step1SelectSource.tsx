@@ -1,7 +1,7 @@
 import { FormInstance, message } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { getMyAccounts } from '../../../../api/accountsApi';
-import { IAccount } from '../../../../util/types';
+import { getMyAccounts } from '../../../../../api/accountsApi';
+import { IAccount } from '../../../../../util/types';
 import SeelectAccount from './shared/SelectAccount';
 
 interface Step1SelectSourceProps {

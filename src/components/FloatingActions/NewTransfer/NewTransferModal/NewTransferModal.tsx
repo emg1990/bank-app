@@ -5,8 +5,8 @@ import Step1SelectSource from './TransferSteps/Step1SelectSource';
 import Step2SelectDestination from './TransferSteps/Step2SelectDestination';
 import Step3SelectAmount from './TransferSteps/Step3SelectAmount';
 import Step4Summary from './TransferSteps/Step4Summary';
-import { createTransfer } from '../../../api/transfersApi';
-import { useAppContext } from '../../../contexts/AppContext';
+import { createTransfer } from '../../../../api/transfersApi';
+import { useAppContext } from '../../../../contexts/AppContext';
 
 interface NewTransferModalProps {
   open: boolean;

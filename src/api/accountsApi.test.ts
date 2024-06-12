@@ -188,7 +188,7 @@ describe('accountsApi', () => {
         .mockResolvedValueOnce({ data: accountData })
         .mockResolvedValueOnce({ data: ownerData });
 
-      await expect(getValidatedAccount(accountId)).rejects.toThrow('This account was already added.');
+      await expect(getValidatedAccount(accountId)).rejects.toThrow('This account is already in your Accounts list.');
       expect(mockAxios.get).toHaveBeenCalledWith(`${BASE_URL}/accounts/${accountId}`);
       expect(mockAxios.get).toHaveBeenCalledWith(`${BASE_URL}/owners/${OWNER_ID}`);
     });

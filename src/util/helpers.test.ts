@@ -1,4 +1,4 @@
-import { getCurrencyByCode, getParsedCurrencyByCode, getCurrencyConvertedAmount, getBalanceByCurrency, roundDecimal, displayDateTime } from "./helpers";
+import { getCurrencyByCode, getParsedCurrencyByCode, getCurrencyConvertedAmount, getBalanceByCurrency, roundDecimal, displayDateTime, IBAN_REGEX } from "./helpers";
 import { IAccount } from "./types";
 
 describe("getCurrencyByCode", () => {
@@ -163,5 +163,30 @@ describe("displayDateTime", () => {
   it("should convert a given date in milliseconds to a formatted string representation", () => {
     const result = displayDateTime(1631234567890);
     expect(result).toBe("10/09/2021, 02:42:47"); // Assuming 'en-GB' format
+  });
+});
+
+describe("IBAN_REGEX", () => {
+  it("should match a valid IBAN", () => {
+    const validIBANs = [
+      "GB82WEST12345698765432",
+      "DE89370400440532013000",
+      "FR1420041010050500013M02606",
+    ];
+    validIBANs.forEach(iban => {
+      expect(iban).toMatch(IBAN_REGEX);
+    });
+  });
+
+  it("should not match an invalid IBAN", () => {
+    const invalidIBANs = [
+      "GB82WEST1234", // Too short
+      "DE893704004405320130001532534234", // Too long
+      "FR1E420041010050500013M0260", // Invalid character
+      "GB82WEST1234569876543!", // Invalid character
+    ];
+    invalidIBANs.forEach(iban => {
+      expect(iban).not.toMatch(IBAN_REGEX);
+    });
   });
 });
