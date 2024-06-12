@@ -13,7 +13,7 @@ const AccountsList = () => {
   const [displayedAccounts, setDisplayedAccounts] = useState<IAccount[]>([]);
   const [selectedAccount, setSelectedAccount] = useState<IAccount | undefined>();
   const [openModal, setOpenModal] = useState(false);
-  const { owner } = useAppContext();
+  const { owner, myAccountsLastUpdate } = useAppContext();
 
   useEffect(() => {
     const fetchLinkedAccounts = async () => {
@@ -26,7 +26,7 @@ const AccountsList = () => {
       }
     };
     fetchLinkedAccounts();
-  }, [owner]);
+  }, [owner, myAccountsLastUpdate]);
 
   const onAddAccount = () => {
     setOpenModal(true);

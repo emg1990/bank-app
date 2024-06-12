@@ -222,3 +222,30 @@ export const removeAccountFromList = async (account: IAccount): Promise<void> =>
     throw new Error("Oops! Something went wrong please try again later");
   }
 };
+
+/**
+ * Deletes an account that belongs to the current user.
+ * @param account - The account to be deleted.
+ * @throws {Error} If the user is not authorized to delete the account.
+ * @throws {Error} If the user does not have permission to delete the account.
+ * @throws {Error} If an unexpected error occurs during the deletion process.
+ */
+export const deleteAccount = async (account: IAccount): Promise<void> => {
+  if (account.ownerId !== OWNER_ID) {
+    throw new Error("You are not authorized to delete this account");
+  }
+  try {
+    await axios.delete(`${BASE_URL}/accounts/${account.id}`);
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const axiosError: AxiosError = error;
+      if (axiosError.response?.status === 401) {
+        // Should redirect to login page
+        throw new Error("You are not authorized to delete an account");
+      } else if (axiosError.response?.status === 403) {
+        throw new Error("You do not have permission to delete an account");
+      }
+    }
+    throw new Error("Oops! Something went wrong please try again later");
+  }
+};

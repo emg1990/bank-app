@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, List, Popconfirm } from 'antd';
 import { DeleteOutlined, EditOutlined, UserOutlined } from '@ant-design/icons';
 import { IAccount } from '../../../../util/types';
-import { removeAccountFromList } from '../../../../api/accountsApi';
+import { deleteAccount, removeAccountFromList } from '../../../../api/accountsApi';
 import { useAppContext } from '../../../../contexts/AppContext';
 import styles from './AccountRow.module.css';
 
@@ -14,11 +14,16 @@ interface AccountRowProps {
 }
 
 const AccountRow: React.FC<AccountRowProps> = ({ account, onEdit }) => {
-  const { owner, updateOwnerSavedAccounts } = useAppContext();
+  const { owner, updateOwnerSavedAccounts, setMyAccountsLastUpdate } = useAppContext();
 
   const onDelete = () => {
-    removeAccountFromList(account);
-    updateOwnerSavedAccounts(owner.savedAccounts.filter(id => id !== account.id));
+    if (account.ownerId === owner.id) {
+      deleteAccount(account);
+      setMyAccountsLastUpdate(new Date().getTime());
+    } else {
+      removeAccountFromList(account);
+      updateOwnerSavedAccounts(owner.savedAccounts.filter(id => id !== account.id));
+    }
   };
 
   return (
